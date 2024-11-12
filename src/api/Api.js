@@ -1,33 +1,18 @@
 // --host=192.168.0.107
 
-//const BASE_API = 'http://localhost:8000/api';
-//const BASE_API = 'http://192.168.0.107:8000/api';
-const BASE_API = 'https://rmrparttime.com/api';
+//const BASE_API = 'http://192.168.0.104:3000';
+//const BASE_API = 'https://taxibraz.onrender.com';
+const BASE_API = 'http://192.168.0.108:3000';
 
 
 
 export default {
-   
-  // base_storage: 'http://localhost:8000/storage',
- base_storage: 'https://rmrparttime.com/storage',
-   // base_storage: 'http://192.168.0.107:8000/storage',
-    
-    
+      
 
-    getUser: async (token) => {
-        const response = await fetch(`${BASE_API}/user`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            },
-        });
-        return response;
-    },
+  
 
     login: async (fd) => {
-        const response = await fetch(`${BASE_API}/signin`, {
+        const response = await fetch(`${BASE_API}/admin/auth/login`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -35,23 +20,10 @@ export default {
             },
             body: JSON.stringify(fd)
         });
-       // const json = await response.json();        
         return response;
     },
-    logout: async (token) => {
-        const response = await fetch(`${BASE_API}/logout`, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            },
-            
-        });
-        return response;
-    },
-    getCategorias: async (token) => {
-        const req = await fetch(`${BASE_API}/categorias/all`, {
+    getPassengers: async (token) => {
+        const response = await fetch(`${BASE_API}/admin/passengers`, {
             method: 'GET', 
             headers: {
                 Accept: 'application/json',
@@ -60,220 +32,86 @@ export default {
             },
            
         });
-        const json = await req.json();        
-    return json;
+        return response;
     },
-    getCategoria: async (id) => {
-        const req = await fetch(`${BASE_API}/categorias/${id}`, {
+    getDrivers: async (token) => {
+        const response = await fetch(`${BASE_API}/admin/drivers`, {
             method: 'GET', 
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
             },
            
         });
-        const json = await req.json();        
-    return json;
-    },
-   
-    addCategoria: async (token,fd) => {
-        const response = await fetch(`${BASE_API}/categorias`, {
-            method: 'POST',
-            headers: { 
-             
-            'Authorization': 'Bearer ' + token
-            },
-
-            body: fd
-        });
         return response;
     },
-    updateCategoria: async (token,fd,id) => {
-        const response = await fetch(`${BASE_API}/categorias/${id}`, {
-            method: 'POST',
-            headers: { 
-              'Authorization': 'Bearer ' + token
-            },
-
-            body: fd
-     });
-        return response;
-    },
-    getClientes: async (token) => {
-        const response = await fetch(`${BASE_API}/clientes`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            },
-        });
-        return response;
-    },
-    getCliente: async (token,id) => {
-        const response = await fetch(`${BASE_API}/clientes/${id}`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            },
-        });
-        return response;
-    },
-    getWorkers: async (token) => {
-        const response = await fetch(`${BASE_API}/workers`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            },
-        });
-        return response;
-    },
-    getDistritos: async () => {
-        const req = await fetch(`${BASE_API}/distritos`, {
+    getDriver: async (token,id) => {
+        const response = await fetch(`${BASE_API}/admin/drivers/${id}`, {
             method: 'GET', 
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
             },
            
         });
-        const json = await req.json();        
-        return json;
+        return response;
     },
-
-    getConcelhos: async (idDistrito) => {
-        const req = await fetch(`${BASE_API}/concelhos/${idDistrito}`, {
+    getPassenger: async (token,id) => {
+        const response = await fetch(`${BASE_API}/admin/passengers/${id}`, {
             method: 'GET', 
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
             },
            
         });
-        const json = await req.json();        
-        return json;
-    },
-    updateCliente: async (token,fd,id) => {
-        const response = await fetch(`${BASE_API}/clientes/${id}`, {
-            method: 'POST',
-            headers: { 
-              'Authorization': 'Bearer ' + token
-            },
-
-            body: fd
-     });
         return response;
     },
-    updateWorker: async (token,fd,id) => {
-        const response = await fetch(`${BASE_API}/workers/${id}`, {
+    addDriver: async (token,fd) => {
+        const response = await fetch(`${BASE_API}/admin/drivers/register`, {
             method: 'POST',
-            headers: { 
-              'Authorization': 'Bearer ' + token
-            },
-
-            body: fd
-     });
-        return response;
-    },
-    getAllOrcamentos: async (token) => {
-        const response = await fetch(`${BASE_API}/orcamentos/all`, {
-            method: 'GET',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
             },
-        });
-        const json = await response.json();
-        return json;
-    },
-    getOrcamento: async (token,id) => {
-        const response = await fetch(`${BASE_API}/orcamentos/${id}`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            },
-        });
-        const json = await response.json();
-        return json;
-    },
-    getParametros: async (token) => {
-        const response = await fetch(`${BASE_API}/config`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            },
-        });
-      
-        return response;
-    },
-   
-    updateParametros: async (token,fd) => {
-        const response = await fetch(`${BASE_API}/config`, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json', 
-              'Authorization': 'Bearer ' + token
-            },
-
             body: JSON.stringify(fd)
         });
         return response;
     },
-    getDashboardData: async (token) => {
-        const response = await fetch(`${BASE_API}/dashboard`, {
-            method: 'GET',
+    updateDriver: async (token,id,fd) => {
+        const response = await fetch(`${BASE_API}/admin/drivers/${id}`, {
+            method: 'PUT', 
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
             },
+            body: JSON.stringify(fd)
         });
         return response;
     },
-    getOrders: async (token) => {
-        const response = await fetch(`${BASE_API}/orders`, {
-            method: 'GET',
+    updatePassenger: async (token,id,fd) => {
+        const response = await fetch(`${BASE_API}/admin/passengers/${id}`, {
+            method: 'PUT', 
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
             },
+            body: JSON.stringify(fd)
         });
-        const json = await response.json();
-        return json;
-    },
-    addCliente: async (token,fd) => {
-        const response = await fetch(`${BASE_API}/user/create-client`, {
-            method: 'POST',
-            headers: { 
-              'Authorization': 'Bearer ' + token
-            },
-
-            body: fd
-     });
-        return response;
-    },
-    addWorker: async (token,fd) => {
-        const response = await fetch(`${BASE_API}/user/create-worker`, {
-            method: 'POST',
-            headers: { 
-              'Authorization': 'Bearer ' + token
-            },
-
-            body: fd
-     });
         return response;
     },
 
-    
+  
+
+
+
+
+  
+   
 };

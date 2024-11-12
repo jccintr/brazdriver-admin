@@ -5,7 +5,7 @@ import { Outlet,Navigate } from 'react-router-dom';
 const PrivateRoute = () => {
     const {loggedUser} = useContext(DataContext);
 
-  return loggedUser ? <Outlet/> : <Navigate to='/signin'/>;
+  return loggedUser ? <Outlet/> : <Navigate to='/login'/>;
 
 }
 
