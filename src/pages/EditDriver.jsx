@@ -155,9 +155,10 @@ const onUpdate = async (e) => {
              <Label className='dark:text-gray-100' htmlFor="isAdmin">Cadastro Ativo</Label>
              
         </div>
+        {publishError && <Alert className='mt-5' color='failure'>{publishError}</Alert>}
       <Button onClick={onUpdate} gradientMonochrome="info" disabled={isLoading}>{isLoading ? <Spinner size='sm'/>:'SALVAR ALTERAÇÕES'}</Button>
       <Button onClick={()=> navigate('/?tab=drivers')} gradientMonochrome="failure" >CANCELAR</Button>
-      {publishError && <Alert className='mt-5' color='failure'>{publishError}</Alert>}
+     
     </form></>):<Spinner className='flex-1 w-full mt-10' color="info" aria-label="Info spinner example" size="xl" />}
     </div>
   )

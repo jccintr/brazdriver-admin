@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaCrown } from "react-icons/fa";
 import { Rating } from "flowbite-react";
 
-const CardPassenger = ({passenger}) => {
+const CardPassenger = ({passenger,onView}) => {
   const navigate = useNavigate()
   return (
     <div className="w-[330px] md:w-[250px] lg:w-[300px] py-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" >
@@ -22,9 +22,10 @@ const CardPassenger = ({passenger}) => {
         <p className="ml-2 text-sm font-medium text-gray-900 dark:text-white">{passenger.rating.toFixed(1)}</p>
       </Rating>
       
-      
-     
-      <Button size="sm" className='mt-4' color="blue" onClick={()=>navigate('/edit-cliente',{state:{cliente}})}>Editar</Button>
+      <div className='flex flex-row gap-2'>
+          <Button size="sm" className='mt-4' color="blue" onClick={()=>onView(passenger)}>Ver</Button>
+          <Button size="sm" className='mt-4' color="blue" onClick={()=>navigate('/edit-passenger',{state:{passengerId:passenger._id}})}>Editar</Button>
+      </div>
      
     </div>
   </div>

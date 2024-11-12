@@ -11,6 +11,7 @@ import Rides from './pages/Rides';
 import Header from './components/Header';
 import NewDriver from './pages/NewDriver';
 import EditDriver from './pages/EditDriver';
+import EditPassenger from './pages/EditPassenger';
 
 
 
@@ -43,6 +44,7 @@ const App = () => {
                       <Route path="/drivers" element={<Drivers/>}/>
                       <Route path="/new-driver" element={<NewDriver/>}/>
                       <Route path="/edit-driver" element={<EditDriver/>}/>
+                      <Route path="/edit-passenger" element={<EditPassenger/>}/>
                       <Route path="/passengers" element={<Passengers/>}/>
                       <Route path="/rides" element={<Rides/>}/>
                   </Route>
