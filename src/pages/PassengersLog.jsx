@@ -2,6 +2,7 @@ import React, { useEffect,useState,useContext } from 'react';
 import Api from '../api/Api';
 import TablePassengersLog from '../components/tables/TablePassengerLogs';
 import DataContext from '../context/DataContext';
+import { Spinner } from 'flowbite-react';
 
 const PassengersLog = () => {
     const [logs,setLogs] = useState([]);
@@ -31,7 +32,7 @@ const PassengersLog = () => {
         <div className='pt-4 w-full px-4  mx-auto dark:bg-slate-800'>
           <div className='flex flex-col items-center'>
           
-              <TablePassengersLog logs={logs} />
+          {!isLoading?<TablePassengersLog logs={logs} />:<Spinner className='flex-1 w-full mt-10' color="info" aria-label="Info spinner example" size="xl" />}
              
           </div>
          
