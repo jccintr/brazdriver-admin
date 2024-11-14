@@ -6,6 +6,7 @@ import Passengers from './Passengers';
 import Drivers from './Drivers';
 import Rides from './Rides';
 import Mensagens from './Mensagens';
+import PassengersLog from './PassengersLog';
 
 
 
@@ -32,6 +33,7 @@ const Home = () => {
       </div>
        {tab === 'dashboard' && <Dashboard />}
        {tab === 'passengers' && <Passengers />}
+       {tab === 'passengersLogs' && <PassengersLog />}
        {tab === 'drivers' && <Drivers />}
        {tab === 'rides' && <Rides />}
        {tab === 'mensagens' && <Mensagens />}

@@ -13,6 +13,7 @@ import { FaRoad } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
+import { FaListUl } from "react-icons/fa6";
 
 const SideBar = () => {
     const location = useLocation();
@@ -64,6 +65,9 @@ const SideBar = () => {
               </Link>
               <Link to='/?tab=mensagens'>
                     <Sidebar.Item active={tab === 'mensagens' || !tab} icon={FaEnvelope} as='div'>Mensagens</Sidebar.Item>
+              </Link>
+              <Link to='/?tab=passengersLogs'>
+                    <Sidebar.Item active={tab === 'passengersLogs' || !tab} icon={FaListUl} as='div'>Pax Logs</Sidebar.Item>
               </Link>
              
         </Sidebar.ItemGroup>
