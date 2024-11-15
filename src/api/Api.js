@@ -130,6 +130,30 @@ export default {
         });
         return response;
     },
+    deletePassengerMessage: async (token,id) => {
+        const response = await fetch(`${BASE_API}/admin/passengers/messages/${id}`, {
+            method: 'DELETE', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    },
+    deletePassengerLog: async (token,id) => {
+        const response = await fetch(`${BASE_API}/admin/logs/passengers/${id}`, {
+            method: 'DELETE', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    },
 
   
 
