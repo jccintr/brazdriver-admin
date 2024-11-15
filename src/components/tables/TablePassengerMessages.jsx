@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaUserCircle } from "react-icons/fa";
-
-import { Table,Alert } from 'flowbite-react';
+import { FaRegTrashAlt,FaEye  } from "react-icons/fa";
+import { Table,Button } from 'flowbite-react';
 //import { useNavigate } from 'react-router-dom';
 
 
@@ -12,48 +12,46 @@ const formataData = (d)=> {
 
 }
 
-const alert = (tipo) => {
-    if (tipo=='Reclamação'){
-        return 'failure';
-    }
-    if (tipo=='Dúvida'){
-        return 'warning';
-    }
-    if (tipo=='Sugestão'){
-        return 'success';
-    }
-}
+// const alert = (tipo) => {
+//     if (tipo=='Reclamação'){
+//         return 'failure';
+//     }
+//     if (tipo=='Dúvida'){
+//         return 'warning';
+//     }
+//     if (tipo=='Sugestão'){
+//         return 'success';
+//     }
+// }
 
 
-const TablePassengerMessages = ({mensagens}) => {
+const TablePassengerMessages = ({mensagens,setOpenModal,onView,onDelete}) => {
   //const navigate = useNavigate();
+
+
+
   return (
     <Table hoverable>
             <Table.Head>
                   <Table.HeadCell>Data</Table.HeadCell>
-                  <Table.HeadCell>Passageiro</Table.HeadCell>
-                  <Table.HeadCell>Tipo</Table.HeadCell>
+                  <Table.HeadCell>Remetente</Table.HeadCell>
+                  <Table.HeadCell className='hidden md:table-cell'>Tipo</Table.HeadCell>
+                  <Table.HeadCell></Table.HeadCell>
                  
             </Table.Head>
             <Table.Body className='divide-y' >
             {mensagens.map((mensagem) => (
               
               <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800' key={mensagem._id}>
-                  <Table.Cell>{formataData(mensagem.data)}</Table.Cell>
+                  <Table.Cell className={!mensagem.lida?'font-bold':''}>{formataData(mensagem.data)}</Table.Cell>
+                  <Table.Cell className={!mensagem.lida?'font-bold':''}>{mensagem.passenger.name}</Table.Cell>
+                  <Table.Cell className={`hidden md:table-cell ${!mensagem.lida?'font-bold':''}`}>{mensagem.tipo}</Table.Cell>
                   <Table.Cell>
-
                     <div className='flex flex-row gap-2'>
-                    {mensagem.passenger.avatar?<img className="md:w-[20px] h-[20px] rounded-full shadow-lg" src={`${mensagem.passenger.avatar}`} alt="" />:<FaUserCircle className='md:text-gray-400 dark:text-white' size={20} />}
-                    {mensagem.passenger.name}
+                      <Button size='xs' pill color="blue" onClick={()=>onView(mensagem)}><FaEye/></Button>
+                      <Button size='xs' pill color="failure" onClick={()=>onDelete(mensagem)}><FaRegTrashAlt/></Button>
                     </div>
-                   
                   </Table.Cell>
-                  <Table.Cell>
-                  <Alert color={alert(mensagem.tipo)} rounded>
-                      {mensagem.tipo}
-                  </Alert>
-                    </Table.Cell>
-                 
               </Table.Row>
             
               ))}

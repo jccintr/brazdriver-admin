@@ -71,7 +71,7 @@ const handleSubmit = async (e) => {
               <Label value='Senha'/>
               <TextInput type='password' placeholder='Sua senha' id="password" onChange={handleChange}/>
             </div>
-            <Button gradientMonochrome="info"  type='submit' disabled={loading}>
+            <Button color='blue'  type='submit' disabled={loading}>
               {
                 loading ? <Spinner size='sm'/>: 'ENTRAR'
                 }
