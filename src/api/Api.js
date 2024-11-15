@@ -118,6 +118,18 @@ export default {
         });
         return response;
     },
+    getPassengersMessages: async (token) => {
+        const response = await fetch(`${BASE_API}/admin/passengers/messages`, {
+            method: 'GET', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    },
 
   
 
