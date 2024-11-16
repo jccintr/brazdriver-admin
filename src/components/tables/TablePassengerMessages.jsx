@@ -25,7 +25,7 @@ const formataData = (d)=> {
 // }
 
 
-const TablePassengerMessages = ({mensagens,setOpenModal,onView,onDelete}) => {
+const TablePassengerMessages = ({mensagens,onView,onDelete}) => {
   //const navigate = useNavigate();
 
 

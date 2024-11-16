@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaUserCircle } from "react-icons/fa";
-
-import { Table } from 'flowbite-react';
+import { FaRegTrashAlt  } from "react-icons/fa";
+import { Table,Button } from 'flowbite-react';
 //import { useNavigate } from 'react-router-dom';
 
 
@@ -14,7 +14,7 @@ const formataData = (d)=> {
 
 
 
-const TablePassengersLog = ({logs}) => {
+const TablePassengersLog = ({logs,onDelete}) => {
   //const navigate = useNavigate();
   return (
     <Table hoverable>
@@ -23,6 +23,7 @@ const TablePassengersLog = ({logs}) => {
                   <Table.HeadCell>Passageiro</Table.HeadCell>
                   <Table.HeadCell>Ação</Table.HeadCell>
                   <Table.HeadCell className='hidden md:table-cell'>Info</Table.HeadCell>
+                  <Table.HeadCell className='hidden md:table-cell'></Table.HeadCell>
             </Table.Head>
             <Table.Body className='divide-y' >
             {logs.map((log) => (
@@ -39,6 +40,9 @@ const TablePassengersLog = ({logs}) => {
                   </Table.Cell>
                   <Table.Cell>{log.action}</Table.Cell>
                   <Table.Cell className='hidden md:table-cell'>{log.info}</Table.Cell>
+                  <Table.Cell className='hidden md:table-cell'>
+                    <Button size='xs' pill color="failure" onClick={()=>onDelete(log)}><FaRegTrashAlt/></Button>
+                  </Table.Cell>
               </Table.Row>
             
               ))}
