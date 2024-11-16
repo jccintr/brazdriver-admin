@@ -18,7 +18,7 @@ const ModalMensagem = ({onSetStatus,openModal,setOpenModal,modalData}) => {
         <Modal.Body>
         <p className='text-base leading-relaxed text-gray-500 dark:text-gray-400'>{formataData(modalData.data)}</p>   
          <p className='text-base leading-relaxed text-gray-500 dark:text-gray-400'>Remetente: <span className='font-semibold'>{modalData.passenger.name}</span></p>   
-          <div className="space-y-6 p-6">
+          <div className="my-4 space-y-6 p-4 bg-slate-200 dark:bg-slate-800 rounded-md">
             <p className="text-base text-justify leading-relaxed text-gray-500 dark:text-gray-400">{modalData.message}</p>
           </div>
         </Modal.Body>
