@@ -7,6 +7,7 @@ import { Rating } from "flowbite-react";
 
 const CardDriver = ({driver,onView}) => {
   const navigate = useNavigate()
+  
   return (
     <div className="w-[330px] md:w-[250px] lg:w-[300px] py-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" >
     

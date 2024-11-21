@@ -3,6 +3,7 @@
 
 const BASE_API = 'https://taxibraz.onrender.com';
 //const BASE_API = 'http://192.168.0.108:3000';
+//const BASE_API = 'http://192.168.1.8:3000';
 
 
 
@@ -163,6 +164,30 @@ export default {
                 'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify({lida})
+        });
+        return response;
+    },
+    getRides: async (token) => {
+        const response = await fetch(`${BASE_API}/admin/rides`, {
+            method: 'GET', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    },
+    getRideDetail: async (token,id) => {
+        const response = await fetch(`${BASE_API}/admin/rides/${id}`, {
+            method: 'GET', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
         });
         return response;
     },

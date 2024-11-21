@@ -12,6 +12,7 @@ import Header from './components/Header';
 import NewDriver from './pages/NewDriver';
 import EditDriver from './pages/EditDriver';
 import EditPassenger from './pages/EditPassenger';
+import RideDetail from './pages/RideDetail';
 
 
 
@@ -47,6 +48,7 @@ const App = () => {
                       <Route path="/edit-passenger" element={<EditPassenger/>}/>
                       <Route path="/passengers" element={<Passengers/>}/>
                       <Route path="/rides" element={<Rides/>}/>
+                      <Route path="/ride" element={<RideDetail/>}/>
                   </Route>
               </Routes>
              
