@@ -26,7 +26,7 @@ const CardPassenger = ({passenger,onView}) => {
       
       <div className='flex flex-row gap-2'>
           <Button size="xs" pill className='mt-4' color="blue" onClick={()=>onView(passenger)}><FaEye/></Button>
-          <Button size="xs" pill className='mt-4' color="green" onClick={()=>navigate('/edit-passenger',{state:{passengerId:passenger._id}})}><FaRegEdit/></Button>
+          <Button size="xs" pill className='mt-4' color="success" onClick={()=>navigate('/edit-passenger',{state:{passengerId:passenger._id}})}><FaRegEdit/></Button>
       </div>
      
     </div>

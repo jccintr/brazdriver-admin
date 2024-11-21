@@ -26,7 +26,7 @@ const CardDriver = ({driver,onView}) => {
       
       <div className='flex flex-row gap-2'>
         <Button size="xs" pill className='mt-4' color="blue" onClick={()=>onView(driver)}><FaEye/></Button>
-        <Button size="xs" pill className='mt-4' color="green" onClick={()=>navigate('/edit-driver',{state:{driverId:driver._id}})}><FaRegEdit/></Button>
+        <Button size="xs" pill className='mt-4' color="success" onClick={()=>navigate('/edit-driver',{state:{driverId:driver._id}})}><FaRegEdit/></Button>
       </div>
     
      
