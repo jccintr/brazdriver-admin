@@ -19,8 +19,7 @@ const TableRides = ({rides,onView}) => {
                 <Table.Head>
                       <Table.HeadCell>Data</Table.HeadCell>
                       <Table.HeadCell>Passageiro</Table.HeadCell>
-                      <Table.HeadCell>Motorista</Table.HeadCell>
-                      <Table.HeadCell>Status</Table.HeadCell>
+                      <Table.HeadCell className='hidden md:table-cell'>Motorista</Table.HeadCell>
                       <Table.HeadCell>Valor</Table.HeadCell>
                       <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
@@ -37,7 +36,7 @@ const TableRides = ({rides,onView}) => {
                             </div>
                        
                       </Table.Cell>
-                      <Table.Cell>
+                      <Table.Cell className='hidden md:table-cell'>
     
                             <div className='flex flex-row gap-2'>
                             {ride.driver.avatar?<img className="md:w-[20px] h-[20px] rounded-full shadow-lg" src={`${ride.driver.avatar}`} alt="" />:<FaUserCircle className='md:text-gray-400 dark:text-white' size={20} />}
@@ -45,7 +44,7 @@ const TableRides = ({rides,onView}) => {
                             </div>
                        
                       </Table.Cell>
-                      <Table.Cell>{ride.status}</Table.Cell>
+                      
                       <Table.Cell>{ride.valor.toFixed(2)}</Table.Cell>
                       <Table.Cell>
                         <Button size='xs' pill color="blue" onClick={()=>onView(ride._id)}><FaEye/></Button>

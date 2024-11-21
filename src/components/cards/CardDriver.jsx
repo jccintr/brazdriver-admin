@@ -4,6 +4,7 @@ import { Button } from "flowbite-react";
 import { useNavigate } from 'react-router-dom';
 import { FaCrown } from "react-icons/fa";
 import { Rating } from "flowbite-react";
+import { FaEye,FaRegEdit   } from "react-icons/fa";
 
 const CardDriver = ({driver,onView}) => {
   const navigate = useNavigate()
@@ -24,8 +25,8 @@ const CardDriver = ({driver,onView}) => {
       </Rating>
       
       <div className='flex flex-row gap-2'>
-        <Button size="sm" className='mt-4' color="blue" onClick={()=>onView(driver)}>Ver</Button>
-        <Button size="sm" className='mt-4' color="blue" onClick={()=>navigate('/edit-driver',{state:{driverId:driver._id}})}>Editar</Button>
+        <Button size="xs" pill className='mt-4' color="blue" onClick={()=>onView(driver)}><FaEye/></Button>
+        <Button size="xs" pill className='mt-4' color="green" onClick={()=>navigate('/edit-driver',{state:{driverId:driver._id}})}><FaRegEdit/></Button>
       </div>
     
      

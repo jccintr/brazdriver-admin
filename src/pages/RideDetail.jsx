@@ -126,7 +126,7 @@ return (
     <Table className='mx-auto max-w-screen-xl'>
        <Table.Head>
                   <Table.HeadCell>Distância</Table.HeadCell>
-                  <Table.HeadCell>Duração</Table.HeadCell>
+                  <Table.HeadCell className='hidden md:table-cell'>Duração</Table.HeadCell>
                   <Table.HeadCell className='hidden md:table-cell'>Pagamento</Table.HeadCell>
                   <Table.HeadCell>Valor</Table.HeadCell>
                   <Table.HeadCell>Taxa</Table.HeadCell>
@@ -134,7 +134,7 @@ return (
         <Table.Body >
            <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
               <Table.Cell>{util.distancia(ride.distancia)}</Table.Cell>
-              <Table.Cell>{util.duracao(ride.duracao)}</Table.Cell>
+              <Table.Cell className='hidden md:table-cell'>{util.duracao(ride.duracao)}</Table.Cell>
               <Table.Cell className='hidden md:table-cell'>{ride.pagamento.nome}</Table.Cell>
               <Table.Cell>R$ {ride.valor.toFixed(2)}</Table.Cell>
               <Table.Cell>R$ {ride.valorPlataforma.toFixed(2)}</Table.Cell>

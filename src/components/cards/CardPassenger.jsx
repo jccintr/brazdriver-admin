@@ -4,6 +4,8 @@ import { Button } from "flowbite-react";
 import { useNavigate } from 'react-router-dom';
 import { FaCrown } from "react-icons/fa";
 import { Rating } from "flowbite-react";
+import { FaEye,FaRegEdit   } from "react-icons/fa";
+
 
 const CardPassenger = ({passenger,onView}) => {
   const navigate = useNavigate()
@@ -23,8 +25,8 @@ const CardPassenger = ({passenger,onView}) => {
       </Rating>
       
       <div className='flex flex-row gap-2'>
-          <Button size="sm" className='mt-4' color="blue" onClick={()=>onView(passenger)}>Ver</Button>
-          <Button size="sm" className='mt-4' color="blue" onClick={()=>navigate('/edit-passenger',{state:{passengerId:passenger._id}})}>Editar</Button>
+          <Button size="xs" pill className='mt-4' color="blue" onClick={()=>onView(passenger)}><FaEye/></Button>
+          <Button size="xs" pill className='mt-4' color="green" onClick={()=>navigate('/edit-passenger',{state:{passengerId:passenger._id}})}><FaRegEdit/></Button>
       </div>
      
     </div>
