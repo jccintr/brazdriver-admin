@@ -123,7 +123,31 @@ return (
       </Rating>
      </Card>
      <div className='h-5'/></>}
-    <Table className='mx-auto max-w-screen-xl'>
+     <Card  className="max-w-screen-xl mx-auto">
+        <div className='flex flex-col gap-2 md:flex-row justify-between '>
+            <div className='flex flex-col gap-2 md:gap-4'>
+                <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Distância</h5>
+                <p className="font-normal text-gray-700 dark:text-gray-400">{util.distancia(ride.distancia)}</p>
+            </div>
+            <div className='flex flex-col gap-2 md:gap-4'>
+                <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Duração</h5>
+                <p className="font-normal text-gray-700 dark:text-gray-400">{util.duracao(ride.duracao)}</p>
+            </div>
+            <div className='flex flex-col gap-2 md:gap-4'>
+                <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Pagamento</h5>
+                <p className="font-normal text-gray-700 dark:text-gray-400">{ride.pagamento.nome}</p>
+            </div>
+            <div className='flex flex-col gap-2 md:gap-4'>
+                <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Valor</h5>
+                <p className="font-normal text-gray-700 dark:text-gray-400">R$ {ride.valor.toFixed(2)}</p>
+            </div>
+            <div className='flex flex-col gap-2 md:gap-4'>
+                <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Taxa</h5>
+                <p className="font-normal text-gray-700 dark:text-gray-400">R$ {ride.valorPlataforma.toFixed(2)}</p>
+            </div>
+        </div>
+    </Card>
+    {/*<Table className='mx-auto max-w-screen-xl'>
        <Table.Head>
                   <Table.HeadCell>Distância</Table.HeadCell>
                   <Table.HeadCell className='hidden md:table-cell'>Duração</Table.HeadCell>
@@ -140,12 +164,12 @@ return (
               <Table.Cell>R$ {ride.valorPlataforma.toFixed(2)}</Table.Cell>
            </Table.Row>
         </Table.Body>
-    </Table>
+    </Table>*/}
     <div className='h-5'/>
     <Card  className="max-w-screen-xl mx-auto">
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Eventos</h5>
-      {ride.events.map((evento)=>(
-      <p className="font-normal text-gray-700 dark:text-gray-400"><span className='font-semibold mr-2'>{util.formataHora(evento.data)}</span>{evento.descricao}</p>
+      {ride.events.map((evento,index)=>(
+      <p key={index} className="font-normal text-gray-700 dark:text-gray-400"><span className='font-semibold mr-2'>{util.formataHora(evento.data)}</span>{evento.descricao}</p>
       ))}
     </Card>
   

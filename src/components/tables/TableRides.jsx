@@ -20,7 +20,7 @@ const TableRides = ({rides,onView}) => {
                       <Table.HeadCell>Data</Table.HeadCell>
                       <Table.HeadCell>Passageiro</Table.HeadCell>
                       <Table.HeadCell className='hidden md:table-cell'>Motorista</Table.HeadCell>
-                      <Table.HeadCell>Valor</Table.HeadCell>
+                      <Table.HeadCell  className='hidden md:table-cell'>Valor</Table.HeadCell>
                       <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className='divide-y' >
@@ -45,7 +45,7 @@ const TableRides = ({rides,onView}) => {
                        
                       </Table.Cell>
                       
-                      <Table.Cell>{ride.valor.toFixed(2)}</Table.Cell>
+                      <Table.Cell  className='hidden md:table-cell'>{ride.valor.toFixed(2)}</Table.Cell>
                       <Table.Cell>
                         <Button size='xs' pill color="blue" onClick={()=>onView(ride._id)}><FaEye/></Button>
                       </Table.Cell>
