@@ -49,11 +49,11 @@ const RideDetail = () => {
 return (
     <div className='p-3 mx-auto min-h-screen dark:bg-slate-800'>
     {!isLoadingData&&ride!==null?(<>
-    <Button color="blue" pill size='xs' onClick={()=> navigate('/?tab=rides')}>
+    <Button color="blue" pill size='xs' onClick={()=> navigate(`/?tab=rides${ride.status===-2?'-cancelled':''}`)}>
         <HiOutlineArrowLeft className="h-5 w-5" />
     </Button>
     <h1 className='text-center text-3xl my-7 font-semibold dark:text-gray-100'>Detalhes da Corrida</h1>
-
+    {ride.status===-2&&<h2 className='text-center mb-7 text-xl text-red-600'>CANCELADA PELO MOTORISTA</h2>}
     <Card  className="max-w-screen-xl mx-auto">
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Data</h5>
       <p className="font-normal text-gray-700 dark:text-gray-400">{formataData(ride?.data)}</p>
@@ -172,7 +172,11 @@ return (
       <p key={index} className="font-normal text-gray-700 dark:text-gray-400"><span className='font-semibold mr-2'>{util.formataHora(evento.data)}</span>{evento.descricao}</p>
       ))}
     </Card>
-  
+    {ride.status===-2&&<><div className='h-5'/>
+    <Card  className="max-w-screen-xl mx-auto">
+      <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Motivo do Cancelamento</h5>
+      <p className="font-normal text-gray-700 dark:text-gray-400">{ride.motivoCancelamento}</p>
+    </Card></>}
     
     </>):<Spinner className='flex-1 w-full mt-10' color="info" aria-label="Info spinner example" size="xl" />}
     </div>

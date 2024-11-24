@@ -191,6 +191,18 @@ export default {
         });
         return response;
     },
+    getCancelledRides: async (token) => {
+        const response = await fetch(`${BASE_API}/admin/rides/cancelled`, {
+            method: 'GET', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    },
 
   
 

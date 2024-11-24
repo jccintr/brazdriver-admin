@@ -1,14 +1,8 @@
 import React,{useEffect, useState,useContext} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Sidebar } from 'flowbite-react';
-import { FaTools } from "react-icons/fa";
-import { FaHandshake } from "react-icons/fa";
-import { PiNotepadFill } from "react-icons/pi";
-import { BiSolidCategory } from "react-icons/bi";
-import { IoMdSettings } from "react-icons/io";
-import { HiUsers,HiChartPie } from "react-icons/hi";
+import { HiChartPie } from "react-icons/hi";
 import DataContext from '../context/DataContext';
-import { IoIosMegaphone } from "react-icons/io";
 import { FaRoad } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
@@ -18,11 +12,12 @@ import { FaListUl } from "react-icons/fa6";
 const SideBar = () => {
     const location = useLocation();
     const [tab,setTab] = useState('');
-    const {setLoggedUser,loggedUser} = useContext(DataContext);
+    //const {setLoggedUser,loggedUser} = useContext(DataContext);
 
     useEffect(()=>{
         const urlParams = new URLSearchParams(location.search);
         const tabFromUrl = urlParams.get('tab');
+       
         if(tabFromUrl){
           setTab(tabFromUrl);
         }
@@ -60,9 +55,14 @@ const SideBar = () => {
               <Link to='/?tab=drivers'>
                     <Sidebar.Item active={tab === 'drivers' || !tab} icon={FaCar} as='div'>Motoristas</Sidebar.Item>
               </Link>
-              <Link to='/?tab=rides'>
-                    <Sidebar.Item active={tab === 'rides' || !tab} icon={FaRoad} as='div'>Corridas</Sidebar.Item>
-              </Link>
+              <Sidebar.Collapse icon={FaRoad} label="Corridas">
+                  <Link to='/?tab=rides'>
+                        <Sidebar.Item active={tab === 'rides' || !tab} as='div'>Concluídas</Sidebar.Item>
+                  </Link>
+                  <Link to='/?tab=rides-cancelled'>
+                        <Sidebar.Item active={tab === 'rides-cancelled' || !tab} as='div'>Canceladas</Sidebar.Item>
+                  </Link>
+              </Sidebar.Collapse>
               <Link to='/?tab=mensagens'>
                     <Sidebar.Item active={tab === 'mensagens' || !tab} icon={FaEnvelope} as='div'>Mensagens</Sidebar.Item>
               </Link>
