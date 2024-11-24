@@ -1,9 +1,9 @@
 // --host=192.168.0.107
 
 
-const BASE_API = 'https://taxibraz.onrender.com';
+//const BASE_API = 'https://taxibraz.onrender.com';
 //const BASE_API = 'http://192.168.0.108:3000';
-//const BASE_API = 'http://192.168.1.8:3000';
+const BASE_API = 'http://192.168.1.8:3000';
 
 
 
@@ -193,6 +193,18 @@ export default {
     },
     getCancelledRides: async (token) => {
         const response = await fetch(`${BASE_API}/admin/rides/cancelled`, {
+            method: 'GET', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    },
+    getSolicitedRides: async (token) => {
+        const response = await fetch(`${BASE_API}/admin/rides/solicited`, {
             method: 'GET', 
             headers: {
                 Accept: 'application/json',

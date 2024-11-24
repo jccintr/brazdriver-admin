@@ -38,10 +38,10 @@ const TableRides = ({rides,onView}) => {
                       </Table.Cell>
                       <Table.Cell className='hidden md:table-cell'>
     
-                            <div className='flex flex-row gap-2'>
+                            {ride.driver!=null?<div className='flex flex-row gap-2'>
                             {ride.driver.avatar?<img className="md:w-[20px] h-[20px] rounded-full shadow-lg" src={`${ride.driver.avatar}`} alt="" />:<FaUserCircle className='md:text-gray-400 dark:text-white' size={20} />}
                             {ride.driver.name}
-                            </div>
+                            </div>:'n/a'}
                        
                       </Table.Cell>
                       

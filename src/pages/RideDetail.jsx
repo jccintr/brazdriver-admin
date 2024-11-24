@@ -49,11 +49,12 @@ const RideDetail = () => {
 return (
     <div className='p-3 mx-auto min-h-screen dark:bg-slate-800'>
     {!isLoadingData&&ride!==null?(<>
-    <Button color="blue" pill size='xs' onClick={()=> navigate(`/?tab=rides${ride.status===-2?'-cancelled':''}`)}>
+    <Button color="blue" pill size='xs' onClick={()=> navigate(`/?tab=rides${ride.status===-2?'-cancelled':ride.status===-1?'-solicited':''}`)}>
         <HiOutlineArrowLeft className="h-5 w-5" />
     </Button>
     <h1 className='text-center text-3xl my-7 font-semibold dark:text-gray-100'>Detalhes da Corrida</h1>
     {ride.status===-2&&<h2 className='text-center mb-7 text-xl text-red-600'>CANCELADA PELO MOTORISTA</h2>}
+    {ride.status===-1&&<h2 className='text-center mb-7 text-xl text-red-600'>CANCELADA PELO PASSAGEIRO</h2>}
     <Card  className="max-w-screen-xl mx-auto">
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Data</h5>
       <p className="font-normal text-gray-700 dark:text-gray-400">{formataData(ride?.data)}</p>
@@ -73,7 +74,7 @@ return (
       </div>
     </Card>
     <div className='h-5'/>
-    <Card  className="max-w-screen-xl mx-auto">
+    {ride.status!==-1&&<><Card  className="max-w-screen-xl mx-auto">
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
         Motorista
       </h5>
@@ -88,11 +89,11 @@ return (
          </div>
       </div>
     </Card>
-    <div className='h-5'/>
-    <Card  className="max-w-screen-xl mx-auto">
+    <div className='h-5'/></>}
+    {ride.status!==-1&&<><Card  className="max-w-screen-xl mx-auto">
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Veículo</h5>
       <p className="font-normal text-gray-700 dark:text-gray-400">{ride?.veiculo.modelo} - {ride?.veiculo.cor} - {ride?.veiculo.placa}</p>
-    </Card>
+    </Card></>}
     <div className='h-5'/>
     <Card  className="max-w-screen-xl mx-auto">
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Origem</h5>
