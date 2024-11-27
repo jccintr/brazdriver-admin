@@ -96,15 +96,23 @@ return (
     </Card></>}
     <div className='h-5'/>
     <Card  className="max-w-screen-xl mx-auto">
-      <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Origem</h5>
-      <div className='flex flex-row items-center gap-2'>
-         <PiMapPinAreaFill color='#39ac39' size='24px'/>
-         <p className="font-normal text-gray-700 dark:text-gray-400">{ride?.origem.address}</p>
-      </div>
-      <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Destino</h5>
-      <div className='flex flex-row items-center gap-2'>
-         <PiMapPinAreaFill color='red' size='24px'/>
-         <p className="font-normal text-gray-700 dark:text-gray-400">{ride?.destino.address}</p>
+    <div className='flex flex-col gap-4 md:flex-row justify-around'>
+          <div className='flex flex-col gap-4'>
+              <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Origem</h5>
+              <div className='flex flex-row items-center gap-2'>
+                <PiMapPinAreaFill color='#39ac39' size='24px'/>
+                <p className="font-normal text-gray-700 dark:text-gray-400">{ride?.origem.address}</p>
+              </div>
+          </div>
+
+          <div className='flex flex-col gap-4'>
+              <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Destino</h5>
+              <div className='flex flex-row items-center gap-2'>
+                <PiMapPinAreaFill color='red' size='24px'/>
+                <p className="font-normal text-gray-700 dark:text-gray-400">{ride?.destino.address}</p>
+              </div>
+          </div>
+
       </div>
     </Card>
     <div className='h-5'/>
