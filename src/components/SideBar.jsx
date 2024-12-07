@@ -8,6 +8,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaListUl } from "react-icons/fa6";
+import { sideBarCustomTheme } from '../theme/sideBarTheme';
 
 const SideBar = () => {
     const location = useLocation();
@@ -43,7 +44,7 @@ const SideBar = () => {
 
 
   return (
-    <Sidebar className='w-full md:w-56'>
+    <Sidebar className='w-full md:w-56' theme={sideBarCustomTheme}>
     <Sidebar.Items>
         <Sidebar.ItemGroup>
               <Link to='/?tab=dashboard'>
