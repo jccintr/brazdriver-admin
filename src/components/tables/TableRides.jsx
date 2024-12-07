@@ -1,7 +1,8 @@
 import React from 'react'
 import { FaUserCircle } from "react-icons/fa";
 import { FaEye  } from "react-icons/fa";
-import { Table,Button } from 'flowbite-react';
+import { Table,Button,Pagination } from 'flowbite-react';
+import { paginationCustomTheme } from '../../theme/paginationTheme';
 
 const formataData = (d)=> {
 
@@ -11,10 +12,13 @@ const formataData = (d)=> {
 }
 
 
-const TableRides = ({rides,onView}) => {
-    
+const TableRides = ({rides,onView,totalPages,onChangePage,currentPage}) => {
+  
+   const onPageChange =  (page) => onChangePage(page);
+
 
     return (
+        <>
         <Table hoverable>
                 <Table.Head>
                       <Table.HeadCell>Data</Table.HeadCell>
@@ -54,6 +58,27 @@ const TableRides = ({rides,onView}) => {
                   ))}
                   </Table.Body>
             </Table>
+            <Pagination 
+            theme={paginationCustomTheme}
+            className='hidden lg:block mb-2 '
+            layout="pagination"
+            currentPage={currentPage} 
+            totalPages={totalPages}
+            onPageChange={onPageChange} 
+            previousLabel="Anterior"
+            nextLabel="Próxima"
+          />
+           <Pagination 
+            theme={paginationCustomTheme}
+            className='mb-2 md:hidden'
+            layout="navigation"
+            currentPage={currentPage} 
+            totalPages={totalPages}
+            onPageChange={onPageChange} 
+            previousLabel="Anterior"
+            nextLabel="Próxima"
+          />
+          </>
       )
 }
 

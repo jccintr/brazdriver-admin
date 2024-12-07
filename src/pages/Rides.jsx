@@ -10,33 +10,39 @@ const Rides = () => {
   const [isLoading,setIsLoading] = useState(false);
   const {loggedUser} = useContext(DataContext);
   const navigate = useNavigate()
+  const [totalPages,setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
  
+
   useEffect(()=>{
-       
-    const getRides = async () => {
-        setIsLoading(true);            
-        let response = await Api.getRides(loggedUser.token);
-        if(response.ok){
-          let json = await response.json();
-           setRides(json);
-        }
-        
-       setIsLoading(false);
-    }
-    getRides();
-    
-}, []);
+    getRides(1);
+ }, []);
 
-const onView = (rideId) => {
-
-  navigate('/ride',{state:{rideId:rideId}});
+const getRides = async (page) => {
+  setIsLoading(true);            
+  let response = await Api.getRides(loggedUser.token,page);
+  if(response.ok){
+    let json = await response.json();
+     setTotalPages(json.pages);
+     setRides(json.data);
+  }
+  
+ setIsLoading(false);
 }
+
+const onView = (rideId) => navigate('/ride',{state:{rideId:rideId}});
+
+const onChangePage = async (page) => {
+  setCurrentPage(page);
+  getRides(page);
+}
+
 
   return (
     <div className='pt-4 w-full px-4  mx-auto dark:bg-slate-800'>
       <div className='flex flex-col items-center'>
       
-        {!isLoading?<TableRides rides={rides} onView={onView} />:<Spinner className='flex-1 w-full mt-10' color="info" aria-label="Info spinner example" size="xl" />}
+        {!isLoading?<TableRides totalPages={totalPages} currentPage={currentPage} onChangePage={onChangePage} rides={rides} onView={onView} />:<Spinner className='flex-1 w-full mt-10' color="info" aria-label="Info spinner example" size="xl" />}
         
       </div>
  </div>

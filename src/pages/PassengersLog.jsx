@@ -49,8 +49,8 @@ const PassengersLog = () => {
  }
 
  const onChangePage = async (page) => {
-  console.log('rdou onPage change')
-  setCurrentPage(page);
+ 
+   setCurrentPage(page);
    getLogs(page);
 
  }

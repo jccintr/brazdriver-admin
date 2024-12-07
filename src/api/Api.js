@@ -167,8 +167,8 @@ export default {
         });
         return response;
     },
-    getRides: async (token) => {
-        const response = await fetch(`${BASE_API}/admin/rides`, {
+    getRides: async (token,page) => {
+        const response = await fetch(`${BASE_API}/admin/rides?page=${page}`, {
             method: 'GET', 
             headers: {
                 Accept: 'application/json',
@@ -191,8 +191,8 @@ export default {
         });
         return response;
     },
-    getCancelledRides: async (token) => {
-        const response = await fetch(`${BASE_API}/admin/rides/cancelled`, {
+    getCancelledRides: async (token,page) => {
+        const response = await fetch(`${BASE_API}/admin/rides/cancelled?page=${page}`, {
             method: 'GET', 
             headers: {
                 Accept: 'application/json',
@@ -203,8 +203,8 @@ export default {
         });
         return response;
     },
-    getSolicitedRides: async (token) => {
-        const response = await fetch(`${BASE_API}/admin/rides/solicited`, {
+    getSolicitedRides: async (token,page) => {
+        const response = await fetch(`${BASE_API}/admin/rides/solicited?page=${page}`, {
             method: 'GET', 
             headers: {
                 Accept: 'application/json',

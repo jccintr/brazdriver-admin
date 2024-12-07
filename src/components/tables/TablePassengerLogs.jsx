@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaUserCircle } from "react-icons/fa";
 import { FaRegTrashAlt  } from "react-icons/fa";
-import { Table,Button,Pagination   } from 'flowbite-react';
+import { Table,Button,Pagination } from 'flowbite-react';
 import { paginationCustomTheme } from '../../theme/paginationTheme';
 
 
@@ -18,14 +18,8 @@ const formataData = (d)=> {
 
 
 const TablePassengersLog = ({logs,onDelete,totalPages,onChangePage,currentPage}) => {
- // const [currentPage, setCurrentPage] = useState(1);
  
-
-  const onPageChange =  (page) =>{
-    onChangePage(page);
-   //  setCurrentPage(page);
-    
-  } 
+  const onPageChange =  (page) => onChangePage(page);
 
 
   return (<>
