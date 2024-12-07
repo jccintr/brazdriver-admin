@@ -1,8 +1,11 @@
-import React,{useState} from 'react'
+import React from 'react'
 import { FaUserCircle } from "react-icons/fa";
 import { FaRegTrashAlt  } from "react-icons/fa";
-import { Table,Button,Pagination  } from 'flowbite-react';
-//import { useNavigate } from 'react-router-dom';
+import { Table,Button,Pagination   } from 'flowbite-react';
+import { paginationCustomTheme } from '../../theme/paginationTheme';
+
+
+
 
 
 const formataData = (d)=> {
@@ -57,15 +60,26 @@ const TablePassengersLog = ({logs,onDelete,totalPages,onChangePage,currentPage})
               ))}
               </Table.Body>
         </Table>
+         
           <Pagination 
+            theme={paginationCustomTheme}
+            className='hidden lg:block mb-2 '
             layout="pagination"
             currentPage={currentPage} 
             totalPages={totalPages}
             onPageChange={onPageChange} 
-            //showIcons={true}
             previousLabel="Anterior"
             nextLabel="Próxima"
-            
+          />
+           <Pagination 
+            theme={paginationCustomTheme}
+            className='mb-2 md:hidden'
+            layout="navigation"
+            currentPage={currentPage} 
+            totalPages={totalPages}
+            onPageChange={onPageChange} 
+            previousLabel="Anterior"
+            nextLabel="Próxima"
           />
         </>
   )
