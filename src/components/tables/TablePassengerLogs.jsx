@@ -1,7 +1,7 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { FaUserCircle } from "react-icons/fa";
 import { FaRegTrashAlt  } from "react-icons/fa";
-import { Table,Button } from 'flowbite-react';
+import { Table,Button,Pagination  } from 'flowbite-react';
 //import { useNavigate } from 'react-router-dom';
 
 
@@ -14,9 +14,18 @@ const formataData = (d)=> {
 
 
 
-const TablePassengersLog = ({logs,onDelete}) => {
-  //const navigate = useNavigate();
-  return (
+const TablePassengersLog = ({logs,onDelete,totalPages,onChangePage,currentPage}) => {
+ // const [currentPage, setCurrentPage] = useState(1);
+ 
+
+  const onPageChange =  (page) =>{
+    onChangePage(page);
+   //  setCurrentPage(page);
+    
+  } 
+
+
+  return (<>
     <Table hoverable>
             <Table.Head>
                   <Table.HeadCell>Data</Table.HeadCell>
@@ -48,6 +57,17 @@ const TablePassengersLog = ({logs,onDelete}) => {
               ))}
               </Table.Body>
         </Table>
+          <Pagination 
+            layout="pagination"
+            currentPage={currentPage} 
+            totalPages={totalPages}
+            onPageChange={onPageChange} 
+            //showIcons={true}
+            previousLabel="Anterior"
+            nextLabel="Próxima"
+            
+          />
+        </>
   )
 }
 

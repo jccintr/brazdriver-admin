@@ -3,7 +3,7 @@
 
 const BASE_API = 'https://taxibraz.onrender.com';
 //const BASE_API = 'http://192.168.0.108:3000';
-//const BASE_API = 'http://192.168.1.8:3000';
+//const BASE_API = 'http://192.168.1.5:3000';
 
 
 
@@ -107,8 +107,8 @@ export default {
         });
         return response;
     },
-    getPassengersLog: async (token) => {
-        const response = await fetch(`${BASE_API}/admin/logs/passengers`, {
+    getPassengersLog: async (token,page) => {
+        const response = await fetch(`${BASE_API}/admin/logs/passengers?page=${page}`, {
             method: 'GET', 
             headers: {
                 Accept: 'application/json',
