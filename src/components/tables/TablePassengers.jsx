@@ -13,7 +13,7 @@ const TablePassengers = ({passengers,onView}) => {
            <Table.HeadCell>Nome</Table.HeadCell>
            <Table.HeadCell className='hidden md:table-cell'>Email</Table.HeadCell>
            <Table.HeadCell className='hidden md:table-cell'>Telefone</Table.HeadCell>
-           <Table.HeadCell>Rating</Table.HeadCell>
+           <Table.HeadCell className='hidden md:table-cell'>Rating</Table.HeadCell>
            <Table.HeadCell></Table.HeadCell>
         </Table.Head>
         <Table.Body className='divide-y' >
@@ -27,11 +27,13 @@ const TablePassengers = ({passengers,onView}) => {
                     </Table.Cell>
                     <Table.Cell className='hidden md:table-cell'>{passenger.email}</Table.Cell>
                     <Table.Cell className='hidden md:table-cell'>{passenger.telefone}</Table.Cell>
-                    <Table.Cell className='flex flex-row gap-1 items-center'>
-                      <Rating>
-                         <RatingStar/>
-                      </Rating>
-                      {passenger.rating.toFixed(1)}
+                    <Table.Cell className='hidden md:table-cell'>
+                      <div className='flex flex-row gap-1'>
+                        <Rating>
+                          <RatingStar/>
+                        </Rating>
+                        {passenger.rating.toFixed(1)}
+                      </div>
                     </Table.Cell>
                     <Table.Cell>
                       <div className='flex flex-row gap-2'>
