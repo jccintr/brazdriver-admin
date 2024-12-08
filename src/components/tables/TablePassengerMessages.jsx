@@ -1,8 +1,7 @@
 import React from 'react'
-import { FaUserCircle } from "react-icons/fa";
 import { FaRegTrashAlt,FaEye  } from "react-icons/fa";
 import { Table,Button } from 'flowbite-react';
-//import { useNavigate } from 'react-router-dom';
+
 
 
 const formataData = (d)=> {
@@ -12,17 +11,7 @@ const formataData = (d)=> {
 
 }
 
-// const alert = (tipo) => {
-//     if (tipo=='Reclamação'){
-//         return 'failure';
-//     }
-//     if (tipo=='Dúvida'){
-//         return 'warning';
-//     }
-//     if (tipo=='Sugestão'){
-//         return 'success';
-//     }
-// }
+
 
 
 const TablePassengerMessages = ({mensagens,onView,onDelete}) => {
