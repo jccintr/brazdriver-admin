@@ -28,7 +28,7 @@ const TablePassengers = ({passengers,onView}) => {
                     <Table.Cell className='hidden md:table-cell'>{passenger.email}</Table.Cell>
                     <Table.Cell className='hidden md:table-cell'>{passenger.telefone}</Table.Cell>
                     <Table.Cell className='hidden md:table-cell'>
-                      <div className='flex flex-row gap-1'>
+                      <div className='flex flex-row gap-'>
                         <Rating>
                           <RatingStar/>
                         </Rating>

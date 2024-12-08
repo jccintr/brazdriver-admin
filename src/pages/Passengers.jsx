@@ -54,7 +54,7 @@ const onViewPassenger = async (passenger) => {
 
   return (
     <div className='pt-4 w-full px-4  mx-auto dark:bg-slate-800'>
-      <div className='flex flex-col items-center'>
+      <div className='flex flex-col items-center pb-4'>
           <div className='flex w-full flex-col md:flex-row md:justify-between'>
               <div className='flex flex-row gap-2'>
                  <BsFillGrid3X3GapFill size={30} className={`${gridMode?'text-blue-400':'text-gray-200'}`} onClick={()=>setGridMode(true)}/>
