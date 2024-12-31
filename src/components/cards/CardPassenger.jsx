@@ -16,7 +16,7 @@ const CardPassenger = ({passenger,onView}) => {
     {passenger.avatar?<img className="mb-3 w-[60px] h-[60px] rounded-full shadow-lg" src={`${passenger.avatar}`} alt="" />:<FaUserCircle className='text-gray-400 dark:text-white mb-3' size={60} />}
       
       <div className='flex flex-row gap-1 items-center'>
-         <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{passenger.name}</h5>
+         <h5 className="mb-1 text-lg font-medium text-gray-900 dark:text-white">{passenger.name}</h5>
           {passenger.isAdmin&&<FaCrown className="mb-1 text-amber-400" size={20} />}
       </div>
       <Rating>
