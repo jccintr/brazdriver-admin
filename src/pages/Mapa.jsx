@@ -1,4 +1,4 @@
-import  { useEffect,useState,useContext } from 'react';
+import  { useEffect,useState } from 'react';
 import Api from '../api/Api';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -14,8 +14,12 @@ const customIcon = new L.Icon({
   popupAnchor: [0, -36],            // onde o popup abre
 });
 
+//const darkMap = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
+const darkMap = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png';
+const lightMap = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
 const Mapa = () => {
-  const {themeMode,lightTheme,darkTheme} = useTheme();
+  const {themeMode} = useTheme();
   const [drivers,setDrivers] = useState([]);
    const [isLoading,setIsLoading] = useState(false);
 
@@ -41,7 +45,7 @@ const Mapa = () => {
   
      <TileLayer
        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-       url={themeMode=='dark'?'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png':'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
+       url={themeMode=='dark'?darkMap:lightMap}
      />
      {drivers.map((driver)=><Marker key={driver._id} position={[driver.position.latitude, driver.position.longitude]} icon={customIcon}>
        <Popup>
