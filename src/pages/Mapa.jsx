@@ -1,8 +1,22 @@
-import  { useEffect,useState } from 'react';
+import  { useEffect,useState,useContext } from 'react';
 import Api from '../api/Api';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from "leaflet";
+import useTheme from '../context/ThemeContext';
+
+const position = [-22.47405379939683, -45.61427286357874];
+
+const customIcon = new L.Icon({
+  iconUrl: "marker-car.png", // caminho da imagem
+  iconSize: [30, 36],               // tamanho
+  iconAnchor: [20, 36],             // ponto onde "segura" no mapa
+  popupAnchor: [0, -36],            // onde o popup abre
+});
 
 const Mapa = () => {
-   const [drivers,setDrivers] = useState([]);
+  const {themeMode,lightTheme,darkTheme} = useTheme();
+  const [drivers,setDrivers] = useState([]);
    const [isLoading,setIsLoading] = useState(false);
 
     useEffect(()=>{
@@ -22,7 +36,22 @@ const Mapa = () => {
     }, []);
 
   return (
-    <div>{drivers.map((driver)=><h2 key={driver._id}>{driver.name}</h2>)}</div>
+   <div className='w-full  mx-auto dark:bg-slate-800'>
+    <MapContainer style={{ height: '100%', width: '100%' }} center={position} zoom={16} scrollWheelZoom={false}>
+  
+     <TileLayer
+       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+       url={themeMode=='dark'?'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png':'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
+     />
+     {drivers.map((driver)=><Marker key={driver._id} position={[driver.position.latitude, driver.position.longitude]} icon={customIcon}>
+       <Popup>
+         {driver.name}<br/> {driver.veiculo.modelo} {driver.veiculo.cor}<br/>Placa: {driver.veiculo.placa}
+       </Popup>
+     </Marker>)}
+     
+   </MapContainer>
+   </div>
+    
   )
 }
 
