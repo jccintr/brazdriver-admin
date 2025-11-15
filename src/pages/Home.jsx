@@ -1,7 +1,8 @@
-import React,{useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import { useLocation } from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import Dashboard from './Dashboard';
+import Mapa from './Mapa';
 import Passengers from './Passengers';
 import Drivers from './Drivers';
 import Rides from './Rides';
@@ -34,6 +35,7 @@ const Home = () => {
         <SideBar/>
       </div>
        {tab === 'dashboard' && <Dashboard />}
+        {tab === 'mapa' && <Mapa />}
        {tab === 'passengers' && <Passengers />}
        {tab === 'passengersLogs' && <PassengersLog />}
        {tab === 'drivers' && <Drivers />}

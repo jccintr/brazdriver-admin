@@ -1,13 +1,14 @@
-import React,{useEffect, useState,useContext} from 'react';
+import {useEffect, useState,} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Sidebar } from 'flowbite-react';
 import { HiChartPie } from "react-icons/hi";
-import DataContext from '../context/DataContext';
+//import DataContext from '../context/DataContext';
 import { FaRoad } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaListUl } from "react-icons/fa6";
+import { FaMapLocationDot } from "react-icons/fa6";
 import { sideBarCustomTheme } from '../theme/sideBarTheme';
 
 const SideBar = () => {
@@ -49,6 +50,9 @@ const SideBar = () => {
         <Sidebar.ItemGroup>
               <Link to='/?tab=dashboard'>
                     <Sidebar.Item  active={tab === 'dashboard' || !tab} icon={HiChartPie} as='div'>Dashboard</Sidebar.Item>
+              </Link>
+               <Link to='/?tab=mapa'>
+                    <Sidebar.Item  active={tab === 'mapa' || !tab} icon={FaMapLocationDot} as='div'>Mapa</Sidebar.Item>
               </Link>
               <Link to='/?tab=passengers'>
                     <Sidebar.Item active={tab === 'passengers' || !tab}  icon={FaUserAlt} as='div'>Passageiros</Sidebar.Item>
