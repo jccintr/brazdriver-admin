@@ -75,7 +75,7 @@ const SideBar = () => {
                     <Sidebar.Item active={tab === 'mensagens' || !tab} icon={FaEnvelope} as='div'>Mensagens</Sidebar.Item>
               </Link>
               <Link to='/?tab=passengersLogs'>
-                    <Sidebar.Item active={tab === 'passengersLogs' || !tab} icon={FaListUl} as='div'>Pax Logs</Sidebar.Item>
+                    <Sidebar.Item active={tab === 'passengersLogs' || !tab} icon={FaListUl} as='div'>Logs</Sidebar.Item>
               </Link>
              
         </Sidebar.ItemGroup>
