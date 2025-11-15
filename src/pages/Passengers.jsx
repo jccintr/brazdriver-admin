@@ -1,7 +1,7 @@
-import React, { useEffect,useState,useContext } from 'react';
+import  { useEffect,useState,useContext } from 'react';
 import Api from '../api/Api';
 import DataContext from '../context/DataContext';
-import CardPassenger from '../components/cards/CardPassenger';
+//import CardPassenger from '../components/cards/CardPassenger';
 import { CiSearch } from "react-icons/ci";
 import { TextInput,Spinner,Button } from 'flowbite-react';
 import { useNavigate } from 'react-router-dom';

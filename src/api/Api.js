@@ -215,6 +215,17 @@ export default {
         });
         return response;
     },
+    getDriversOnline: async () => {
+        const response = await fetch(`${BASE_API}/drivers/location`, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+               
+            },
+        });
+        return response;
+    },
 
   
 
