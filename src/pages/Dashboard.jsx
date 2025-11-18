@@ -1,3 +1,4 @@
+import React, { useEffect,useState,useContext } from 'react';
 import DashCorridasCanceladas from "../components/dashboard/DashCorridasCanceladas"
 import DashCorridasConcluidas from "../components/dashboard/DashCorridasConcluidas"
 import DashCorridasSolicitadas from "../components/dashboard/DashCorridasSolicitadas"
@@ -7,27 +8,50 @@ import DashFaturamentoDia from "../components/dashboard/DashFaturamentoDia"
 import DashFaturamentoMes from "../components/dashboard/DashFaturamentoMes"
 import DashFaturamentoSemana from "../components/dashboard/DashFaturamentoSemana"
 import DashPassageiros from "../components/dashboard/DashPassageiros"
+import { Spinner } from 'flowbite-react';
+import Api from '../api/Api';
+import DataContext from '../context/DataContext';
 
 
 const Dashboard = () => {
+  const [dashboard,setDashboard] = useState([]);
+  const {loggedUser} = useContext(DataContext);
+  const [isLoading,setIsLoading] = useState(false);
+
+  useEffect(()=>{
+       
+    const getDashboard = async () => {
+        setIsLoading(true);            
+        let resp = await Api.getDashboardData(loggedUser.token);
+        if (resp.status === 200){
+           let json = await resp.json();
+           setDashboard(json);
+        }
+        
+       setIsLoading(false);
+    }
+    getDashboard();
+    
+}, []);
+
   return (
      <div className='pt-4 w-full px-4  mx-auto dark:bg-slate-800'>
       <div className='flex flex-col items-center'>
      
-       <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 pt-4 pb-4 mx-auto'>
+       {!isLoading?<div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 pt-4 pb-4 mx-auto'>
           
-           <DashPassageiros value={45}/>
-           <DashDrivers value={10}/>
-           <DashDriversOnline value={4}/>
-           <DashCorridasConcluidas value={1}/>
-           <DashCorridasCanceladas value={0}/>
-           <DashCorridasSolicitadas value={10}/>
-           <DashFaturamentoDia value={'54,30'}/>
-           <DashFaturamentoSemana value={'250,63'}/>
-           <DashFaturamentoMes value={'1.120,30'}/>
+           <DashPassageiros value={dashboard.registeredPassengers}/>
+           <DashDrivers value={dashboard.registeredDrivers}/>
+           <DashDriversOnline value={dashboard.driversOnline}/>
+           <DashCorridasConcluidas value={dashboard.completedRides}/>
+           <DashCorridasCanceladas value={dashboard.cancelledRides}/>
+           <DashCorridasSolicitadas value={dashboard.solicitedRides}/>
+           <DashFaturamentoDia value={dashboard.completedRidesPerDayTotalValue.toFixed(2)}/>
+           <DashFaturamentoSemana value={dashboard.completedRidesPerWeekTotalValue.toFixed(2)}/>
+           <DashFaturamentoMes value={dashboard.completedRidesPerMonthTotalValue.toFixed(2)}/>
            
            
-        </div>
+        </div>:<Spinner className='mt-10' color="info" aria-label="Info spinner example" size="xl" />}
       </div>
       
     </div>
@@ -35,16 +59,3 @@ const Dashboard = () => {
 }
 
 export default Dashboard
-
-/*
-No passageiros cadastrados
-No motoristas cadastrados
-No motoristas online
-
-corridas em andamento
-
-fat do dia
-fat da semana
-fat do mes
-
-*/

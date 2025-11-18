@@ -226,6 +226,18 @@ export default {
         });
         return response;
     },
+    getDashboardData: async (token,page) => {
+        const response = await fetch(`${BASE_API}/admin/dashboard`, {
+            method: 'GET', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    },
 
   
 
