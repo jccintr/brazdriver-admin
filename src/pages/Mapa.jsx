@@ -41,7 +41,7 @@ const Mapa = () => {
 
   return (
    <div className='w-full  mx-auto dark:bg-slate-800'>
-    <MapContainer style={{ height: '100%', width: '100%' }} center={position} zoom={16} scrollWheelZoom={false}>
+    <MapContainer className='w-full h-[400px] md:h-full' center={position} zoom={16} scrollWheelZoom={false}>
   
      <TileLayer
        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
