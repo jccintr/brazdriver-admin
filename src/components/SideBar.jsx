@@ -68,7 +68,7 @@ const SideBar = () => {
                         <Sidebar.Item active={tab === 'rides-cancelled' || !tab} as='div'>Canceladas</Sidebar.Item>
                   </Link>
                   <Link to='/?tab=rides-solicited'>
-                        <Sidebar.Item active={tab === 'rides-solicited' || !tab} as='div'>Solicitadas</Sidebar.Item>
+                        <Sidebar.Item active={tab === 'rides-solicited' || !tab} as='div'>Não Atendidas</Sidebar.Item>
                   </Link>
               </Sidebar.Collapse>
               <Link to='/?tab=mensagens'>

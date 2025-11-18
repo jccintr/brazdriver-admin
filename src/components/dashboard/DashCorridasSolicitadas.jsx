@@ -6,7 +6,7 @@ const DashCorridasSolicitadas = ({value}) => {
                
           <div className='flex flex-row justify-start gap-2'>
                 <FaRoad className='text-gray-500 dark:text-white' size={24}/>
-                <span className='text-base font-semibold text-gray-500 dark:text-white'>Corridas Solicitadas</span>
+                <span className='text-base font-semibold text-gray-500 dark:text-white'>Corridas Não Atendidas</span>
           </div>
             <div className='flex flex-row justify-end '>
               <span className='text-5xl text-right text-gray-500 dark:text-white'>{value}</span>
