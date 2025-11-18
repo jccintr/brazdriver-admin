@@ -46,9 +46,9 @@ const Dashboard = () => {
            <DashCorridasConcluidas value={dashboard.completedRides}/>
            <DashCorridasCanceladas value={dashboard.cancelledRides}/>
            <DashCorridasSolicitadas value={dashboard.solicitedRides}/>
-           <DashFaturamentoDia value={dashboard.completedRidesPerDayTotalValue.toFixed(2)}/>
-           <DashFaturamentoSemana value={dashboard.completedRidesPerWeekTotalValue.toFixed(2)}/>
-           <DashFaturamentoMes value={dashboard.completedRidesPerMonthTotalValue.toFixed(2)}/>
+           <DashFaturamentoDia value={dashboard.completedRidesPerDayTotalValue?.toFixed(2)}/>
+           <DashFaturamentoSemana value={dashboard.completedRidesPerWeekTotalValue?.toFixed(2)}/>
+           <DashFaturamentoMes value={dashboard.completedRidesPerMonthTotalValue?.toFixed(2)}/>
            
            
         </div>:<Spinner className='mt-10' color="info" aria-label="Info spinner example" size="xl" />}
