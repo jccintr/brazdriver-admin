@@ -62,6 +62,7 @@ const handleSubmit = async (e) => {
               <img src={logo} alt='logo' className='w-60 md:w-4/5  m-auto md:m-0' />
         </div>
         <div className='flex-1'>
+          <p className='text-dourado font-semibold text-lg text-center mb-4'>Painel de Controle</p>
           <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
             <div>
               <Label value='Email'/> 
