@@ -21,7 +21,7 @@ import RideDetail from './pages/RideDetail';
 
 
 const App = () => {
-  const [themeMode,setThemeMode] = useState('light');
+  const [themeMode,setThemeMode] = useState('dark');
 
   const darkTheme = () => {
        setThemeMode('dark');

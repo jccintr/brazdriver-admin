@@ -1,8 +1,8 @@
-import { Button, Label, TextInput,Alert, Spinner } from 'flowbite-react';
-import React, {useState,useContext} from 'react';
+import {  Label, TextInput,Alert, Spinner } from 'flowbite-react';
+import  {useState,useContext} from 'react';
 import DataContext from '../context/DataContext';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/logo-500x290.png';
+import logo from '../assets/logo-512x512.png';
 import Api from '../api/Api';
 
 
@@ -71,11 +71,16 @@ const handleSubmit = async (e) => {
               <Label value='Senha'/>
               <TextInput type='password' placeholder='Sua senha' id="password" onChange={handleChange}/>
             </div>
-            <Button color='blue'  type='submit' disabled={loading}>
-              {
-                loading ? <Spinner size='sm'/>: 'ENTRAR'
-                }
-              </Button>
+           <button 
+              className='w-full p-3 bg-dourado rounded-md 
+                        text-gray-900 font-bold 
+                        hover:bg-dourado/90 active:bg-dourado/95 
+                        disabled:opacity-70 disabled:cursor-not-allowed' 
+              type='submit' 
+              disabled={loading}
+            >
+              {loading ? <Spinner size='sm'/> : 'ENTRAR'}
+            </button>
              
               
           </form>
