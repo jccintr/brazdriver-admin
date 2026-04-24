@@ -8,7 +8,7 @@ import useTheme from '../context/ThemeContext';
 const position = [-22.47405379939683, -45.61427286357874];
 
 const customIcon = new L.Icon({
-  iconUrl: "marker-car.png", // caminho da imagem
+  iconUrl: "marker-braz-taxi.png", // caminho da imagem
   iconSize: [30, 36],               // tamanho
   iconAnchor: [20, 36],             // ponto onde "segura" no mapa
   popupAnchor: [0, -36],            // onde o popup abre
@@ -39,13 +39,16 @@ const Mapa = () => {
         
     }, []);
 
+    {/*url={themeMode=='dark'?darkMap:lightMap}*/}
+
   return (
    <div className='w-full  mx-auto dark:bg-slate-800'>
     <MapContainer className='w-full h-[400px] md:h-full' center={position} zoom={16} scrollWheelZoom={false}>
   
      <TileLayer
        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-       url={themeMode=='dark'?darkMap:lightMap}
+       url={lightMap}
+        
      />
      {drivers.map((driver)=><Marker key={driver._id} position={[driver.position.latitude, driver.position.longitude]} icon={customIcon}>
        <Popup>
