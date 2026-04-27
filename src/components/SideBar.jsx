@@ -74,9 +74,15 @@ const SideBar = () => {
               <Link to='/?tab=mensagens'>
                     <Sidebar.Item active={tab === 'mensagens' || !tab} icon={FaEnvelope} as='div'>Mensagens</Sidebar.Item>
               </Link>
-              <Link to='/?tab=passengersLogs'>
-                    <Sidebar.Item active={tab === 'passengersLogs' || !tab} icon={FaListUl} as='div'>Logs</Sidebar.Item>
-              </Link>
+              <Sidebar.Collapse icon={FaListUl} label="Logs">
+                  <Link to='/?tab=passengersLogs'>
+                        <Sidebar.Item active={tab === 'passengersLogs' || !tab} as='div'>Passageiros</Sidebar.Item>
+                  </Link>
+                  <Link to='/?tab=driversLogs'>
+                        <Sidebar.Item active={tab === 'driversLogs' || !tab} as='div'>Motoristas</Sidebar.Item>
+                  </Link>
+              </Sidebar.Collapse>
+             
              
         </Sidebar.ItemGroup>
     </Sidebar.Items>

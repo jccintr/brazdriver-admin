@@ -10,6 +10,7 @@ import Mensagens from './Mensagens';
 import PassengersLog from './PassengersLog';
 import RidesCancelled from './RidesCancelled';
 import RidesSolicited from './RidesSolicited';
+import DriversLog from './DriversLog';
 
 
 
@@ -38,6 +39,7 @@ const Home = () => {
         {tab === 'mapa' && <Mapa />}
        {tab === 'passengers' && <Passengers />}
        {tab === 'passengersLogs' && <PassengersLog />}
+        {tab === 'driversLogs' && <DriversLog />}
        {tab === 'drivers' && <Drivers />}
        {tab === 'rides' && <Rides />}
        {tab === 'rides-cancelled' && <RidesCancelled/>}

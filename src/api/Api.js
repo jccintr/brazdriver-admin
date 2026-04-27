@@ -3,7 +3,7 @@
 
 const BASE_API = 'https://taxibraz.onrender.com';
 //const BASE_API = 'http://192.168.0.108:3000';
-//const BASE_API = 'http://192.168.1.5:3000';
+//const BASE_API = 'http://192.168.1.12:3000';
 
 
 
@@ -119,6 +119,18 @@ export default {
         });
         return response;
     },
+    getDriversLog: async (token,page) => {
+        const response = await fetch(`${BASE_API}/admin/logs/drivers?page=${page}`, {
+            method: 'GET', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    },
     getPassengersMessages: async (token) => {
         const response = await fetch(`${BASE_API}/admin/passengers/messages`, {
             method: 'GET', 
@@ -145,6 +157,18 @@ export default {
     },
     deletePassengerLog: async (token,id) => {
         const response = await fetch(`${BASE_API}/admin/logs/passengers/${id}`, {
+            method: 'DELETE', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    },
+    deleteDriverLog: async (token,id) => {
+        const response = await fetch(`${BASE_API}/admin/logs/drivers/${id}`, {
             method: 'DELETE', 
             headers: {
                 Accept: 'application/json',
