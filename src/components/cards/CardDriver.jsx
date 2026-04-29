@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaUserCircle } from "react-icons/fa";
 import { Button } from "flowbite-react";
 import { useNavigate } from 'react-router-dom';
 import { FaCrown } from "react-icons/fa";
 import { Rating } from "flowbite-react";
 import { FaEye,FaRegEdit   } from "react-icons/fa";
+import { FaComment } from "react-icons/fa";
+import ModalSendPushMessage from '../modals/ModalSendPushMessage';
 
 const CardDriver = ({driver,onView}) => {
+  const [openPushModal,setOpenPushModal] = useState(false);
   const navigate = useNavigate()
   
   return (
@@ -27,10 +30,11 @@ const CardDriver = ({driver,onView}) => {
       <div className='flex flex-row gap-2'>
         <Button size="xs" pill className='mt-4' color="blue" onClick={()=>onView(driver)}><FaEye/></Button>
         <Button size="xs" pill className='mt-4' color="success" onClick={()=>navigate('/edit-driver',{state:{driverId:driver._id}})}><FaRegEdit/></Button>
+        {driver.pushToken&&<Button  size="xs" pill className='mt-4' color="yellow" onClick={()=>setOpenPushModal(true)}><FaComment/></Button>}
       </div>
-    
-     
+   
     </div>
+    {driver.pushToken&&<ModalSendPushMessage openModal={openPushModal} setOpenModal={setOpenPushModal} pushToken={driver.pushToken}/>}
   </div>
   )
 }

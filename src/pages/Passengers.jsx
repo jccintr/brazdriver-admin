@@ -11,6 +11,7 @@ import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import TablePassengers from '../components/tables/TablePassengers';
 import GridPassengers from '../components/grids/GridPassengers';
 
+
 const Passengers = () => {
   const [passengers,setPassengers] = useState([]);
   const [searchText,setSearchText] = useState('');
