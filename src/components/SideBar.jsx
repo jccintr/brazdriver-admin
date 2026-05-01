@@ -9,6 +9,7 @@ import { FaCar } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaListUl } from "react-icons/fa6";
 import { FaMapLocationDot } from "react-icons/fa6";
+import { BiSolidDirections } from "react-icons/bi";
 import { sideBarCustomTheme } from '../theme/sideBarTheme';
 
 const SideBar = () => {
@@ -71,6 +72,9 @@ const SideBar = () => {
                         <Sidebar.Item active={tab === 'rides-solicited' || !tab} as='div'>Não Atendidas</Sidebar.Item>
                   </Link>
               </Sidebar.Collapse>
+              <Link to='/?tab=bairros'>
+                    <Sidebar.Item active={tab === 'bairros' || !tab} icon={BiSolidDirections} as='div'>Bairros</Sidebar.Item>
+              </Link>
               <Link to='/?tab=mensagens'>
                     <Sidebar.Item active={tab === 'mensagens' || !tab} icon={FaEnvelope} as='div'>Mensagens</Sidebar.Item>
               </Link>

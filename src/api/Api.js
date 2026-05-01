@@ -263,6 +263,43 @@ export default {
         return response;
     },
 
+     getAllBairros: async () => {
+        const response = await fetch(`${BASE_API}/bairros`, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        return response;
+     },
+
+     addLocalidade: async (token,bairroId,fd) => {
+        const response = await fetch(`${BASE_API}/bairros/${bairroId}/localidades`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(fd)
+        });
+        return response;
+     },
+
+     updateLocalidade: async (token,bairroId,localidadeId,fd) => {
+        const response = await fetch(`${BASE_API}/bairros/${bairroId}/localidades/${localidadeId}`, {
+            method: 'PUT',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(fd)
+        });
+        return response;
+     }
+
   
 
 
