@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import TableBairros from '../components/tables/TableBairros';
 import ModalNovaLocalidade from '../components/modals/ModalNovaLocalidade';
 import ModalEditLocalidade from '../components/modals/ModalEditLocalidade';
+import ModalNovoBairro from '../components/modals/ModalNovoBairro';
 
 const Bairros = () => {
     const [bairros,setBairros] = useState([]);
@@ -18,6 +19,8 @@ const Bairros = () => {
     const [localidadeSelecionada, setLocalidadeSelecionada] = useState(null);
     const [bairroSelecionado,setBairroSelecionado] = useState(null);
     const [isSavingLocalidade,setIsSavingLocalidade] = useState(false);
+    const [openModalNovoBairro, setOpenModalNovoBairro] = useState(false);
+    const [isSavingBairro, setIsSavingBairro] = useState(false);
     const {loggedUser} = useContext(DataContext);
     
     const bairrosFiltrados = bairros.filter(
@@ -107,11 +110,36 @@ const Bairros = () => {
         setIsSavingLocalidade(false);
     };
 
+    const handleCreateBairro = async (bairroData) => {
+    setIsSavingBairro(true);
+    
+    const response = await Api.addBairro(loggedUser.token, bairroData);
+    
+    if (response.ok) {
+        // Recarrega a lista completa
+        const getBairros = async () => {
+            let res = await Api.getAllBairros();
+            if (res.ok) {
+                let json = await res.json();
+                setBairros(json.data);
+            }
+        };
+        await getBairros();
+        
+        setOpenModalNovoBairro(false);
+    } else {
+        console.error('Erro ao criar bairro');
+        // Você pode melhorar isso com um toast no futuro
+    }
+    
+    setIsSavingBairro(false);
+    };
+
   return (
      <div className='pt-4 w-full px-4  mx-auto dark:bg-slate-800'>
       <div className='flex flex-col items-center'>
           <div className='flex w-full flex-col md:flex-row md:justify-between'>
-                  <Button color="blue" onClick={()=>navigate('/new-driver')}>Novo Bairro</Button>
+                  <Button color="blue" onClick={() => setOpenModalNovoBairro(true)}>Novo Bairro</Button>
                   <TextInput type='text' placeholder='pesquisar...' rightIcon={CiSearch} className='mt-2 md:mt-0 lg:inline' onChange={e => setSearchText(e.target.value)}/>
           </div>
           
@@ -133,7 +161,13 @@ const Bairros = () => {
                 nomeBairro={bairroSelecionado?.nome}
                 isLoading={isSavingLocalidade}
                 onSubmit={handleUpdateLocalidade}
-            />
+        />
+        <ModalNovoBairro 
+            openModal={openModalNovoBairro} 
+            setOpenModal={setOpenModalNovoBairro}
+            onSubmit={handleCreateBairro}
+            isLoading={isSavingBairro}
+        />
 
      
 

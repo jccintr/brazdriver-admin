@@ -298,6 +298,19 @@ export default {
             body: JSON.stringify(fd)
         });
         return response;
+     },
+
+     addBairro: async (token,fd) => {
+        const response = await fetch(`${BASE_API}/bairros`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(fd)
+        });
+        return response;
      }
 
   
