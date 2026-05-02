@@ -3,23 +3,25 @@ import Api from '../api/Api';
 import DataContext from '../context/DataContext';
 import { CiSearch } from "react-icons/ci";
 import { TextInput,Spinner,Button } from 'flowbite-react';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import TableBairros from '../components/tables/TableBairros';
 import ModalNovaLocalidade from '../components/modals/ModalNovaLocalidade';
 import ModalEditLocalidade from '../components/modals/ModalEditLocalidade';
 import ModalNovoBairro from '../components/modals/ModalNovoBairro';
+import ModalEditBairro from '../components/modals/ModalEditBairro';
 
 const Bairros = () => {
     const [bairros,setBairros] = useState([]);
     const [searchText,setSearchText] = useState('');
     const [isLoading,setIsLoading] = useState(false);
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     const [openModalNovaLocalidade,setOpenModalNovaLocalidade] = useState(false);
     const [openModalEdit, setOpenModalEdit] = useState(false);
     const [localidadeSelecionada, setLocalidadeSelecionada] = useState(null);
     const [bairroSelecionado,setBairroSelecionado] = useState(null);
     const [isSavingLocalidade,setIsSavingLocalidade] = useState(false);
     const [openModalNovoBairro, setOpenModalNovoBairro] = useState(false);
+    const [openModalEditBairro, setOpenModalEditBairro] = useState(false);
     const [isSavingBairro, setIsSavingBairro] = useState(false);
     const {loggedUser} = useContext(DataContext);
     
@@ -53,6 +55,11 @@ const Bairros = () => {
         setBairroSelecionado(bairro);
         setLocalidadeSelecionada(localidade);
         setOpenModalEdit(true);
+    };
+
+    const onEditBairro = (bairro) => {
+       setBairroSelecionado(bairro);
+       setOpenModalEditBairro(true);
     };
 
     const handleSaveLocalidade = async (localidadeData) => {
@@ -168,6 +175,33 @@ const Bairros = () => {
     setIsSavingLocalidade(false);
 };
 
+const handleUpdateBairro = async (bairroData) => {
+    if (!bairroSelecionado) return;
+
+    setIsSavingLocalidade(true); // reutilizando o mesmo loading state
+
+    const response = await Api.updateBairro(
+        loggedUser.token, 
+        bairroSelecionado._id, 
+        bairroData
+    );
+
+    if (response.ok) {
+        // Atualiza a lista local
+        const updatedBairros = bairros.map(bairro => 
+            bairro._id === bairroSelecionado._id 
+                ? { ...bairro, ...bairroData } 
+                : bairro
+        );
+        setBairros(updatedBairros);
+        setOpenModalEditBairro(false);
+    } else {
+        console.error('Erro ao atualizar bairro');
+    }
+
+    setIsSavingLocalidade(false);
+    };
+
   return (
      <div className='pt-4 w-full px-4  mx-auto dark:bg-slate-800'>
       <div className='flex flex-col items-center'>
@@ -176,9 +210,9 @@ const Bairros = () => {
                   <TextInput type='text' placeholder='pesquisar...' rightIcon={CiSearch} className='mt-2 md:mt-0 lg:inline' onChange={e => setSearchText(e.target.value)}/>
           </div>
           
-          {bairrosFiltrados.length>0?<TableBairros bairros={bairrosFiltrados} onAddLocalidade={onAddLocalidade} onEditLocalidade={onEditLocalidade}/>:!isLoading?<h3 className='mt-10 text-gray-900 dark:text-white'>Bairros não encontrados.</h3>:<Spinner className='mt-10' color="info" aria-label="Info spinner example" size="xl" />}
+          {bairrosFiltrados.length>0?<TableBairros bairros={bairrosFiltrados} onAddLocalidade={onAddLocalidade} onEditLocalidade={onEditLocalidade} onEditBairro={onEditBairro}/>:!isLoading?<h3 className='mt-10 text-gray-900 dark:text-white'>Bairros não encontrados.</h3>:<Spinner className='mt-10' color="info" aria-label="Info spinner example" size="xl" />}
       </div>
-      <ModalNovaLocalidade 
+       <ModalNovaLocalidade 
          openModal={openModalNovaLocalidade} 
          setOpenModal={setOpenModalNovaLocalidade}
          nomeBairro={bairroSelecionado?.nome}
@@ -203,8 +237,13 @@ const Bairros = () => {
             isLoading={isSavingBairro}
         />
 
-     
-
+        <ModalEditBairro 
+            openModal={openModalEditBairro} 
+            setOpenModal={setOpenModalEditBairro}
+            bairro={bairroSelecionado}
+            onSubmit={handleUpdateBairro}
+            isLoading={isSavingLocalidade}
+        />
    </div>
   )
 }

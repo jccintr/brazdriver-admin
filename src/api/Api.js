@@ -323,7 +323,20 @@ export default {
             body: JSON.stringify(fd)
         });
         return response;
-     }
+     },
+
+     updateBairro: async (token,bairroId,fd) => {
+        const response = await fetch(`${BASE_API}/bairros/${bairroId}`, {
+            method: 'PUT',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(fd)
+        });
+        return response;
+     },
 
   
 

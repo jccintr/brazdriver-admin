@@ -1,11 +1,10 @@
 import React from 'react'
 import { Table,Button } from 'flowbite-react';
-import { FaEye,FaRegEdit  } from "react-icons/fa";
-import { FaPlusCircle } from "react-icons/fa";
+import { FaRegEdit,FaPlusCircle  } from "react-icons/fa";
 import LocalidadeChip from '../cards/LocalidadeChip';
 
 
-const TableBairros = ({bairros,onAddLocalidade,onEditLocalidade}) => {
+const TableBairros = ({bairros,onAddLocalidade,onEditLocalidade,onEditBairro}) => {
   return (
     <Table hoverable className='mt-4'>
                 <Table.Head>
@@ -26,8 +25,7 @@ const TableBairros = ({bairros,onAddLocalidade,onEditLocalidade}) => {
                                 <Table.Cell>
                                     <div className='flex flex-row gap-2'>
                                         <Button size="xs" pill color="yellow" onClick={()=>onAddLocalidade(bairro)}><FaPlusCircle/></Button>
-                                        <Button size="xs" pill color="blue" onClick={()=>{}}><FaEye/></Button>
-                                        <Button size="xs" pill color="success" onClick={()=>{}}><FaRegEdit/></Button>
+                                        <Button size="xs" pill color="success" onClick={()=>onEditBairro(bairro)}><FaRegEdit/></Button>
                                     </div>
                                 </Table.Cell>
                             </Table.Row>
