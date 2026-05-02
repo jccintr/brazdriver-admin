@@ -300,6 +300,18 @@ export default {
         return response;
      },
 
+     deleteLocalidade: async (token,bairroId,localidadeId) => {
+        const response = await fetch(`${BASE_API}/bairros/${bairroId}/localidades/${localidadeId}`, {
+            method: 'DELETE',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        return response;
+     },
+
      addBairro: async (token,fd) => {
         const response = await fetch(`${BASE_API}/bairros`, {
             method: 'POST',

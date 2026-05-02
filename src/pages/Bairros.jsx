@@ -135,6 +135,39 @@ const Bairros = () => {
     setIsSavingBairro(false);
     };
 
+    const handleDeleteLocalidade = async () => {
+    if (!bairroSelecionado || !localidadeSelecionada) return;
+
+    setIsSavingLocalidade(true);
+
+    const response = await Api.deleteLocalidade(
+        loggedUser.token, 
+        bairroSelecionado._id, 
+        localidadeSelecionada._id
+    );
+
+    if (response.ok) {
+        // Atualiza o estado removendo a localidade
+        const updatedBairros = bairros.map(bairro => {
+            if (bairro._id === bairroSelecionado._id) {
+                return {
+                    ...bairro,
+                    localidades: bairro.localidades.filter(
+                        loc => loc._id !== localidadeSelecionada._id
+                    )
+                };
+            }
+            return bairro;
+        });
+        setBairros(updatedBairros);
+        setOpenModalEdit(false);
+    } else {
+        console.error('Erro ao deletar localidade');
+    }
+
+    setIsSavingLocalidade(false);
+};
+
   return (
      <div className='pt-4 w-full px-4  mx-auto dark:bg-slate-800'>
       <div className='flex flex-col items-center'>
@@ -161,6 +194,7 @@ const Bairros = () => {
                 nomeBairro={bairroSelecionado?.nome}
                 isLoading={isSavingLocalidade}
                 onSubmit={handleUpdateLocalidade}
+                onDelete={handleDeleteLocalidade}
         />
         <ModalNovoBairro 
             openModal={openModalNovoBairro} 
