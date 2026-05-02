@@ -204,7 +204,7 @@ const handleUpdateBairro = async (bairroData) => {
 
   return (
      <div className='pt-4 w-full px-4  mx-auto dark:bg-slate-800'>
-      <div className='flex flex-col items-center'>
+      <div className='flex flex-col items-center pb-4'>
           <div className='flex w-full flex-col md:flex-row md:justify-between'>
                   <Button color="blue" onClick={() => setOpenModalNovoBairro(true)}>Novo Bairro</Button>
                   <TextInput type='text' placeholder='pesquisar...' rightIcon={CiSearch} className='mt-2 md:mt-0 lg:inline' onChange={e => setSearchText(e.target.value)}/>
