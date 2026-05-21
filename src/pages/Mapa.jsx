@@ -54,18 +54,30 @@ const Mapa = () => {
               </Button>
           </div>
         </div>
-        <MapContainer className='w-full h-[400px] md:h-full' center={position} zoom={16} scrollWheelZoom={false}>
+        <MapContainer 
+            className='w-full h-[400px] md:h-full' 
+            center={position} 
+            zoom={16} 
+            scrollWheelZoom={false}
+         >
       
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url={lightMap}
-            
-        />
-        {drivers.map((driver)=><Marker key={driver._id} position={[driver.position.latitude, driver.position.longitude]} icon={customIcon}>
-          <Popup>
-            {driver.name}<br/> {driver.veiculo.modelo} {driver.veiculo.cor}<br/>Placa: {driver.veiculo.placa}
-          </Popup>
-        </Marker>)}
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url={lightMap}
+            />
+            {drivers.map((driver)=>(
+                <Marker 
+                    key={driver._id} 
+                    position={[driver.position.latitude, driver.position.longitude]} 
+                    icon={customIcon}
+                >
+                    <Popup>
+                        {driver.name}<br/>
+                        {driver.veiculo.modelo+ ' '+ driver.veiculo.cor} 
+                        {/*Placa: {driver.veiculo.placa}*/}
+                    </Popup>
+                </Marker>
+              ))}
         
         </MapContainer>
    </div>
