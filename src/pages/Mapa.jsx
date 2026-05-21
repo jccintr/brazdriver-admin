@@ -4,6 +4,8 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from "leaflet";
 import useTheme from '../context/ThemeContext';
+import { Button } from 'flowbite-react';
+import { BiRefresh } from "react-icons/bi";
 
 const position = [-22.47405379939683, -45.61427286357874];
 
@@ -25,7 +27,12 @@ const Mapa = () => {
 
     useEffect(()=>{
            
-        const getDrivers = async () => {
+       
+        getDrivers();
+        
+    }, []);
+
+     const getDrivers = async () => {
             setIsLoading(true);            
             let response = await Api.getDriversOnline();
             if(response.ok){
@@ -35,28 +42,32 @@ const Mapa = () => {
             
            setIsLoading(false);
         }
-        getDrivers();
-        
-    }, []);
 
     {/*url={themeMode=='dark'?darkMap:lightMap}*/}
 
   return (
    <div className='w-full  mx-auto dark:bg-slate-800'>
-    <MapContainer className='w-full h-[400px] md:h-full' center={position} zoom={16} scrollWheelZoom={false}>
-  
-     <TileLayer
-       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-       url={lightMap}
+       <div className="relative w-full mx-auto dark:bg-slate-800">
+          <div className="absolute top-4 right-4 z-[1000]">
+              <Button color="green" pill size='xs' onClick={()=> getDrivers()}>
+                      <BiRefresh className="h-6 w-6" />
+              </Button>
+          </div>
+        </div>
+        <MapContainer className='w-full h-[400px] md:h-full' center={position} zoom={16} scrollWheelZoom={false}>
+      
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url={lightMap}
+            
+        />
+        {drivers.map((driver)=><Marker key={driver._id} position={[driver.position.latitude, driver.position.longitude]} icon={customIcon}>
+          <Popup>
+            {driver.name}<br/> {driver.veiculo.modelo} {driver.veiculo.cor}<br/>Placa: {driver.veiculo.placa}
+          </Popup>
+        </Marker>)}
         
-     />
-     {drivers.map((driver)=><Marker key={driver._id} position={[driver.position.latitude, driver.position.longitude]} icon={customIcon}>
-       <Popup>
-         {driver.name}<br/> {driver.veiculo.modelo} {driver.veiculo.cor}<br/>Placa: {driver.veiculo.placa}
-       </Popup>
-     </Marker>)}
-     
-   </MapContainer>
+        </MapContainer>
    </div>
     
   )
