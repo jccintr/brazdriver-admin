@@ -7,6 +7,7 @@ import { Rating } from "flowbite-react";
 import { FaEye,FaRegEdit   } from "react-icons/fa";
 import { FaComment } from "react-icons/fa";
 import ModalSendPushMessage from '../modals/ModalSendPushMessage';
+import GridDrivers from '../grids/GridDrivers';
 
 const CardDriver = ({driver,onView}) => {
   const [openPushModal,setOpenPushModal] = useState(false);
@@ -34,7 +35,7 @@ const CardDriver = ({driver,onView}) => {
       </div>
    
     </div>
-    {driver.pushToken&&<ModalSendPushMessage openModal={openPushModal} setOpenModal={setOpenPushModal} pushToken={driver.pushToken}/>}
+    {driver.pushToken&&<ModalSendPushMessage openModal={openPushModal} setOpenModal={setOpenPushModal} driver={driver}/>}
   </div>
   )
 }

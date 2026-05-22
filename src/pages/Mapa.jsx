@@ -49,7 +49,7 @@ const Mapa = () => {
    <div className='w-full  mx-auto dark:bg-slate-800'>
        <div className="relative w-full mx-auto dark:bg-slate-800">
           <div className="absolute top-4 right-4 z-[1000]">
-              <Button color="green" pill size='xs' onClick={()=> getDrivers()}>
+              <Button color="green" pill size='xs' onClick={()=> getDrivers()} disabled={isLoading}>
                       <BiRefresh className={`h-6 w-6 ${isLoading ? 'animate-spin' : ''}`} />
               </Button>
           </div>

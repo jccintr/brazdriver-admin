@@ -338,6 +338,19 @@ export default {
         return response;
      },
 
+     sendMessageToDriver: async (token,fd) => {
+        const response = await fetch(`${BASE_API}/admin/drivers/sendPushMessage`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(fd)
+        });
+        return response;
+     }
+
   
 
 
