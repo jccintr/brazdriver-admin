@@ -31,7 +31,7 @@ const PassengersLog = () => {
        setIsLoading(false);
     }
 
-    const onDelete = async (log) => {
+const onDelete = async (log) => {
      
         setSelected(log);
         setOpenModal(true);

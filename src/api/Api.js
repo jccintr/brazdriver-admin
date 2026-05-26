@@ -349,7 +349,20 @@ export default {
             body: JSON.stringify(fd)
         });
         return response;
-     }
+     },
+
+     deleteRide: async (token,id) => {
+        const response = await fetch(`${BASE_API}/admin/rides/${id}`, {
+            method: 'DELETE', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    }
 
   
 

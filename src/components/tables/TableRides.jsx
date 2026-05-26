@@ -1,6 +1,4 @@
-import React from 'react'
-import { FaUserCircle } from "react-icons/fa";
-import { FaEye  } from "react-icons/fa";
+import { FaUserCircle, FaRegTrashAlt, FaEye } from "react-icons/fa";
 import { Table,Button,Pagination } from 'flowbite-react';
 import { paginationCustomTheme } from '../../theme/paginationTheme';
 
@@ -12,7 +10,7 @@ const formataData = (d)=> {
 }
 
 
-const TableRides = ({rides,onView,totalPages,onChangePage,currentPage}) => {
+const TableRides = ({rides,onDelete,onView,totalPages,onChangePage,currentPage}) => {
   
    const onPageChange =  (page) => onChangePage(page);
 
@@ -51,7 +49,10 @@ const TableRides = ({rides,onView,totalPages,onChangePage,currentPage}) => {
                       
                       <Table.Cell  className='hidden md:table-cell'>{ride.valor.toFixed(2)}</Table.Cell>
                       <Table.Cell>
-                        <Button size='xs' pill color="blue" onClick={()=>onView(ride._id)}><FaEye/></Button>
+                        <div className='flex flex-row gap-2'>
+                           <Button size='xs' pill color="blue" onClick={()=>onView(ride._id)}><FaEye/></Button>
+                           <Button size='xs' pill color="red" onClick={()=>onDelete(ride)}><FaRegTrashAlt/></Button>
+                        </div>
                       </Table.Cell>
                   </Table.Row>
                 
