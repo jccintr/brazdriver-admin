@@ -4,6 +4,7 @@ import TablePassengersLog from '../components/tables/TablePassengerLogs';
 import DataContext from '../context/DataContext';
 import { Spinner } from 'flowbite-react';
 import ModalDelete from '../components/modals/ModalDelete';
+import toast from 'react-hot-toast';
 
 const PassengersLog = () => {
     const [logs,setLogs] = useState([]);
@@ -44,6 +45,7 @@ const onDelete = async (log) => {
     if(response.ok){
        setOpenModal(false);
        getLogs();
+       toast.success('Log excluído com sucesso!');
     }
     
  }

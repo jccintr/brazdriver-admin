@@ -14,6 +14,7 @@ import NewDriver from './pages/NewDriver';
 import EditDriver from './pages/EditDriver';
 import EditPassenger from './pages/EditPassenger';
 import RideDetail from './pages/RideDetail';
+import { Toaster } from 'react-hot-toast';
 
 
 
@@ -53,8 +54,8 @@ const App = () => {
                       <Route path="/ride" element={<RideDetail/>}/>
                   </Route>
               </Routes>
-             
             </BrowserRouter>
+            <Toaster/>
         </ThemeProvider>
     </DataProvider>
   )

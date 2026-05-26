@@ -5,6 +5,7 @@ import { Spinner } from 'flowbite-react';
 import TableRides from '../components/tables/TableRides';
 import { useNavigate } from 'react-router-dom';
 import ModalDelete from '../components/modals/ModalDelete';
+import toast from 'react-hot-toast';
 
 const Rides = () => {
   const [rides,setRides] = useState([]);
@@ -53,6 +54,7 @@ const onDelete = async (ride) => {
     if(response.ok){
        setOpenModal(false);
        getRides();
+       toast.success('Corrida excluída com sucesso!');
     }
     
  }

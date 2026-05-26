@@ -4,6 +4,7 @@ import TableDriversLog from '../components/tables/TableDriversLogs';
 import DataContext from '../context/DataContext';
 import { Spinner } from 'flowbite-react';
 import ModalDelete from '../components/modals/ModalDelete';
+import toast from 'react-hot-toast';
 
 const DriversLog = () => {
     const [logs,setLogs] = useState([]);
@@ -44,6 +45,7 @@ const DriversLog = () => {
     if(response.ok){
        setOpenModal(false);
        getLogs();
+       toast.success('Log excluído com sucesso!');
     }
     
  }
