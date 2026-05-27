@@ -8,6 +8,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { Rating } from "flowbite-react";
 import { PiMapPinAreaFill } from "react-icons/pi";
 import util from '../util.js';
+import MessageBubble from '../components/MessageBubble';
 
 
 const formataData = (d)=> {
@@ -156,24 +157,7 @@ return (
             </div>
         </div>
     </Card>
-    {/*<Table className='mx-auto max-w-screen-xl'>
-       <Table.Head>
-                  <Table.HeadCell>Distância</Table.HeadCell>
-                  <Table.HeadCell className='hidden md:table-cell'>Duração</Table.HeadCell>
-                  <Table.HeadCell className='hidden md:table-cell'>Pagamento</Table.HeadCell>
-                  <Table.HeadCell>Valor</Table.HeadCell>
-                  <Table.HeadCell>Taxa</Table.HeadCell>
-        </Table.Head>
-        <Table.Body >
-           <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
-              <Table.Cell>{util.distancia(ride.distancia)}</Table.Cell>
-              <Table.Cell className='hidden md:table-cell'>{util.duracao(ride.duracao)}</Table.Cell>
-              <Table.Cell className='hidden md:table-cell'>{ride.pagamento.nome}</Table.Cell>
-              <Table.Cell>R$ {ride.valor.toFixed(2)}</Table.Cell>
-              <Table.Cell>R$ {ride.valorPlataforma.toFixed(2)}</Table.Cell>
-           </Table.Row>
-        </Table.Body>
-    </Table>*/}
+   
     <div className='h-5'/>
     <Card  className="max-w-screen-xl mx-auto">
         <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Eventos</h5>
@@ -185,9 +169,11 @@ return (
 
      {ride.messages.length>0&&<><div className='h-5'/><Card  className="max-w-screen-xl mx-auto">
        <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Mensagens</h5>
-          {ride.messages.map((message,index)=>(
-            <p key={index} className="font-normal text-gray-700 dark:text-gray-400"><span className='font-semibold mr-2'>{util.formataHora(message.sentAt) + ' - ' + message.sender+': '}</span>{message.message}</p>
-           ))}
+       <div className="flex flex-row justify-between">
+        <span className="text-white">Passageiro</span>
+        <span className="text-white">Motorista</span>
+       </div>
+          {ride.messages.map((message,index)=><MessageBubble key={index} message={message}/>)}
      </Card></>}
 
     {ride.status===-2&&<><div className='h-5'/>
