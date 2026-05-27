@@ -176,11 +176,20 @@ return (
     </Table>*/}
     <div className='h-5'/>
     <Card  className="max-w-screen-xl mx-auto">
-      <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Eventos</h5>
-      {ride.events.map((evento,index)=>(
-      <p key={index} className="font-normal text-gray-700 dark:text-gray-400"><span className='font-semibold mr-2'>{util.formataHora(evento.data)}</span>{evento.descricao}</p>
-      ))}
+        <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Eventos</h5>
+        {ride.events.map((evento,index)=>(
+            <p key={index} className="font-normal text-gray-700 dark:text-gray-400">
+                <span className='font-semibold mr-2'>{util.formataHora(evento.data)}</span>{evento.descricao}</p>
+        ))}
     </Card>
+
+     {ride.messages.length>0&&<><div className='h-5'/><Card  className="max-w-screen-xl mx-auto">
+       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Mensagens</h5>
+          {ride.messages.map((message,index)=>(
+            <p key={index} className="font-normal text-gray-700 dark:text-gray-400"><span className='font-semibold mr-2'>{util.formataHora(message.sentAt) + ' - ' + message.sender+': '}</span>{message.message}</p>
+           ))}
+     </Card></>}
+
     {ride.status===-2&&<><div className='h-5'/>
     <Card  className="max-w-screen-xl mx-auto">
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Motivo do Cancelamento</h5>
