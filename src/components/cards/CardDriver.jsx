@@ -9,7 +9,7 @@ import { FaComment } from "react-icons/fa";
 import ModalSendPushMessage from '../modals/ModalSendPushMessage';
 import DriverStatus from '../DriverStatus';
 
-const CardDriver = ({ driver, onView }) => {
+const CardDriver = ({ driver, onView, toggleDriverStatus }) => {
   const [openPushModal, setOpenPushModal] = useState(false);
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const CardDriver = ({ driver, onView }) => {
     <div className="w-[330px] md:w-[250px] lg:w-[300px] py-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative">
       
       {/* Status no canto superior esquerdo */}
-      <div className="absolute top-4 left-4 z-10">
+      <div onClick={()=>toggleDriverStatus(driver._id)} className="absolute top-4 left-4 z-10">
         <DriverStatus online={driver.online} />
       </div>
 

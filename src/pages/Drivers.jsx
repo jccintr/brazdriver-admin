@@ -6,6 +6,7 @@ import { TextInput,Spinner,Button } from 'flowbite-react';
 import { useNavigate } from 'react-router-dom';
 import ModalDriver from '../components/modals/ModalDriver';
 import GridDrivers from '../components/grids/GridDrivers';
+import toast from 'react-hot-toast';
 
 const Drivers = () => {
   const [drivers,setDrivers] = useState([]);
@@ -22,27 +23,38 @@ const Drivers = () => {
 
   useEffect(()=>{
        
-    const getDrivers = async () => {
+    
+    getDrivers();
+    
+}, []);
+
+const getDrivers = async () => {
         setIsLoading(true);            
         let response = await Api.getDrivers(loggedUser.token);
         if(response.ok){
           let json = await response.json();
            setDrivers(json);
         }
-        
        setIsLoading(false);
     }
-    getDrivers();
-    
-}, []);
+
+const toggleDriverStatus = async (driverId) => {
+  let response = await Api.toggleDriverStatus(loggedUser.token,driverId);
+  if(response.ok){
+       let json = await response.json();
+       toast.success(`Status do motorista alterado para ${json.online ? 'Online' : 'Offline'}`);
+       getDrivers();
+  }
+  
+}
 
 const onViewDriver = async (driver) => {
-      let response = await Api.getDriver(loggedUser.token,driver._id);
-        if (response.ok){
-            let json = await response.json();
-            setModalData(json);
-            setOpenModal(true);
-        }
+  let response = await Api.getDriver(loggedUser.token,driver._id);
+    if (response.ok){
+        let json = await response.json();
+        setModalData(json);
+        setOpenModal(true);
+    }
      
 }
 
@@ -54,7 +66,7 @@ const onViewDriver = async (driver) => {
                   <TextInput type='text' placeholder='pesquisar...' rightIcon={CiSearch} className='mt-2 md:mt-0 lg:inline' onChange={e => setSearchText(e.target.value)}/>
           </div>
           
-          {driversFiltrado.length>0?<GridDrivers drivers={driversFiltrado} onView={onViewDriver}/>:!isLoading?<h3 className='mt-10 text-gray-900 dark:text-white'>Motoristas não encontrados.</h3>:<Spinner className='mt-10' color="info" aria-label="Info spinner example" size="xl" />}
+          {driversFiltrado.length>0?<GridDrivers toggleDriverStatus={toggleDriverStatus} drivers={driversFiltrado} onView={onViewDriver}/>:!isLoading?<h3 className='mt-10 text-gray-900 dark:text-white'>Motoristas não encontrados.</h3>:<Spinner className='mt-10' color="info" aria-label="Info spinner example" size="xl" />}
       </div>
       {modalData&&<ModalDriver openModal={openModal} setOpenModal={setOpenModal} modalData={modalData}/>}
      

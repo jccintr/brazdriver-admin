@@ -362,7 +362,21 @@ export default {
            
         });
         return response;
-    }
+    },
+
+    toggleDriverStatus: async (token,id) => {
+        const response = await fetch(`${BASE_API}/admin/drivers/${id}/status`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            //body: JSON.stringify(fd)
+        });
+        return response;
+     },
+
 
   
 
