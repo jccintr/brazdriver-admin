@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Modal, TextInput, Textarea, Button, Label } from 'flowbite-react';
 import { HiPaperAirplane } from "react-icons/hi2";
 import DataContext from '../../context/DataContext';
 import Api from '../../api/Api';
+import toast from 'react-hot-toast';
 
 const ModalSendPushMessage = ({ openModal, setOpenModal, driver }) => {
     const [subject, setSubject] = useState('');
@@ -30,13 +31,14 @@ const ModalSendPushMessage = ({ openModal, setOpenModal, driver }) => {
             setSubject('');
             setMessage('');
             setOpenModal(false);
+            toast.success(`Notificação enviada com sucesso para o motorista ${driver.name}!`);
 
             // Opcional: mostrar toast de sucesso
             // toast.success("Notificação enviada com sucesso!");
 
         } catch (error) {
             console.error("Erro ao enviar notificação:", error);
-            alert("Erro ao enviar notificação. Tente novamente.");
+            toast.error("Erro ao enviar notificação. Por favor, tente novamente.");
         } finally {
             setIsLoading(false);
         }
