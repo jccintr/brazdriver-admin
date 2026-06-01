@@ -12,6 +12,7 @@ import PassengersLog from './PassengersLog';
 import RidesCancelled from './RidesCancelled';
 import RidesSolicited from './RidesSolicited';
 import DriversLog from './DriversLog';
+import DriversNotifications from './DriversNotifications';
 
 
 
@@ -36,17 +37,19 @@ const Home = () => {
       <div className=''>
         <SideBar/>
       </div>
+      
        {tab === 'dashboard' && <Dashboard />}
-        {tab === 'mapa' && <Mapa />}
+       {tab === 'mapa' && <Mapa />}
        {tab === 'passengers' && <Passengers />}
        {tab === 'passengersLogs' && <PassengersLog />}
-        {tab === 'driversLogs' && <DriversLog />}
+       {tab === 'driversLogs' && <DriversLog />}
        {tab === 'drivers' && <Drivers />}
        {tab === 'rides' && <Rides />}
        {tab === 'rides-cancelled' && <RidesCancelled/>}
        {tab === 'rides-solicited' && <RidesSolicited/>}
        {tab === 'bairros' && <Bairros />}
        {tab === 'mensagens' && <Mensagens />}
+       {tab === 'drivers-notifications' && <DriversNotifications/>}
        
     </div>
   )

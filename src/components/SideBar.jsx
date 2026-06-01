@@ -7,6 +7,7 @@ import { FaRoad } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
+import { FaComment } from "react-icons/fa";
 import { FaListUl } from "react-icons/fa6";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { BiSolidDirections } from "react-icons/bi";
@@ -86,6 +87,9 @@ const SideBar = () => {
                         <Sidebar.Item active={tab === 'driversLogs' || !tab} as='div'>Motoristas</Sidebar.Item>
                   </Link>
               </Sidebar.Collapse>
+              <Link to='/?tab=drivers-notifications'>
+                    <Sidebar.Item active={tab === 'drivers-notifications' || !tab} icon={FaComment} as='div'>Notificações</Sidebar.Item>
+              </Link>
              
              
         </Sidebar.ItemGroup>
