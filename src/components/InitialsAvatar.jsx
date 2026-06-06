@@ -8,11 +8,34 @@ const InitialsAvatar = ({
   
   const getInitials = (fullName) => {
     if (!fullName || typeof fullName !== 'string') return '?';
+
     const words = fullName.trim().split(/\s+/).filter(Boolean);
     if (words.length === 0) return '?';
-    return words.length >= 2 
-      ? (words[0][0] + words[1][0]).toUpperCase()
-      : words[0][0].toUpperCase();
+
+    // Partículas que devem ser ignoradas (comuns em nomes portugueses/brasileiros)
+    const particles = new Set([
+      'de', 'da', 'do', 'dos', 'das', 
+      'e', 'o', 'a', 'em', 'para'
+    ]);
+
+    // Filtra as partículas
+    const significantWords = words.filter(word => 
+      !particles.has(word.toLowerCase())
+    );
+
+    if (significantWords.length === 0) {
+      return words[0][0].toUpperCase(); // fallback
+    }
+
+    if (significantWords.length === 1) {
+      return significantWords[0][0].toUpperCase();
+    }
+
+    // Pega a primeira letra do primeiro nome + primeira letra do último sobrenome significativo
+    const firstInitial = significantWords[0][0].toUpperCase();
+    const lastInitial = significantWords[significantWords.length - 1][0].toUpperCase();
+
+    return firstInitial + lastInitial;
   };
 
   const getColor = (str) => {
