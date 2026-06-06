@@ -1,6 +1,7 @@
 import { FaUserCircle, FaRegTrashAlt, FaEye } from "react-icons/fa";
 import { Table,Button,Pagination } from 'flowbite-react';
 import { paginationCustomTheme } from '../../theme/paginationTheme';
+import InitialsAvatar from "../InitialsAvatar";
 
 const formataData = (d)=> {
 
@@ -33,7 +34,7 @@ const TableRides = ({rides,onDelete,onView,totalPages,onChangePage,currentPage})
                       <Table.Cell>
     
                             <div className='flex flex-row gap-2'>
-                            {ride.passenger.avatar?<img className="md:w-[20px] h-[20px] rounded-full shadow-lg" src={`${ride.passenger.avatar}`} alt="" />:<FaUserCircle className='md:text-gray-400 dark:text-white' size={20} />}
+                            {ride.passenger.avatar?<img className="md:w-[20px] h-[20px] rounded-full shadow-lg" src={`${ride.passenger.avatar}`} alt="" />:<InitialsAvatar name={ride.passenger.name} size={20} className="md:text-gray-400 dark:text-white" />}
                             {ride.passenger.name}
                             </div>
                        
@@ -41,7 +42,7 @@ const TableRides = ({rides,onDelete,onView,totalPages,onChangePage,currentPage})
                       <Table.Cell className='hidden md:table-cell'>
     
                             {ride.driver!=null?<div className='flex flex-row gap-2'>
-                            {ride.driver.avatar?<img className="md:w-[20px] h-[20px] rounded-full shadow-lg" src={`${ride.driver.avatar}`} alt="" />:<FaUserCircle className='md:text-gray-400 dark:text-white' size={20} />}
+                            {ride.driver.avatar?<img className="md:w-[20px] h-[20px] rounded-full shadow-lg" src={`${ride.driver.avatar}`} alt="" />:<InitialsAvatar name={ride.driver.name} size={20} className="md:text-gray-400 dark:text-white" />}
                             {ride.driver.name}
                             </div>:'n/a'}
                        

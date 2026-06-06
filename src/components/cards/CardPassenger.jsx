@@ -1,5 +1,4 @@
-import React from 'react';
-import { FaUserCircle } from "react-icons/fa";
+import InitialsAvatar from '../InitialsAvatar';
 import { Button } from "flowbite-react";
 import { useNavigate } from 'react-router-dom';
 import { FaCrown } from "react-icons/fa";
@@ -13,10 +12,10 @@ const CardPassenger = ({passenger,onView}) => {
     <div className="w-[330px] md:w-[250px] lg:w-[300px] py-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" >
     
     <div className="flex flex-col items-center">
-    {passenger.avatar?<img className="mb-3 w-[60px] h-[60px] rounded-full shadow-lg" src={`${passenger.avatar}`} alt="" />:<FaUserCircle className='text-gray-400 dark:text-white mb-3' size={60} />}
+    {passenger.avatar?<img className="mb-3 w-[60px] h-[60px] rounded-full shadow-lg" src={`${passenger.avatar}`} alt="" />:<InitialsAvatar name={passenger.name} size={60} className="mb-3 shadow-lg ring-2 ring-gray-200 dark:ring-gray-600" />}
       
       <div className='flex flex-row gap-1 items-center'>
-         <h5 className="mb-1 text-lg font-medium text-gray-900 dark:text-white">{passenger.name}</h5>
+         <h5 className="mb-1 text-lg text-center font-medium text-gray-900 dark:text-white">{passenger.name}</h5>
           {passenger.isAdmin&&<FaCrown className="mb-1 text-amber-400" size={20} />}
       </div>
       <Rating>

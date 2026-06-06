@@ -1,6 +1,6 @@
-import React from 'react'
+import InitialsAvatar from "../InitialsAvatar";
 import {Checkbox, Label, Modal,Rating } from "flowbite-react";
-import { FaUserCircle } from "react-icons/fa";
+
 
 
 const ModalPassenger = ({openModal,setOpenModal,modalData}) => {
@@ -11,7 +11,7 @@ const ModalPassenger = ({openModal,setOpenModal,modalData}) => {
 
         <div className="space-y-4">
         <div className='flex flex-row gap-2'>
-           {modalData.avatar?<img className="mb-3 w-[60px] h-[60px] rounded-full shadow-lg" src={`${modalData.avatar}`} alt="" />:<FaUserCircle className='text-gray-400 dark:text-white mb-3' size={60} />}
+           {modalData.avatar?<img className="mb-3 w-[60px] h-[60px] rounded-full shadow-lg" src={`${modalData.avatar}`} alt="" />:<InitialsAvatar name={modalData.name} size={60} className="mb-3 shadow-lg ring-2 ring-gray-200 dark:ring-gray-600" />}
            <div className='flex flex-col gap-2'>
               <h3 className="text-xl font-medium text-gray-900 dark:text-white">{modalData.name}</h3>
               <Rating>

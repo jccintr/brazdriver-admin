@@ -1,5 +1,4 @@
-import React from 'react'
-import { FaUserCircle } from "react-icons/fa";
+import InitialsAvatar from "../InitialsAvatar";
 import { FaRegTrashAlt  } from "react-icons/fa";
 import { Table,Button,Pagination } from 'flowbite-react';
 import { paginationCustomTheme } from '../../theme/paginationTheme';
@@ -39,7 +38,7 @@ const TableDriversLog = ({logs,onDelete,totalPages,onChangePage,currentPage}) =>
                   <Table.Cell>
 
                     <div className='flex flex-row gap-2'>
-                    {log.driver.avatar?<img className="md:w-[20px] h-[20px] rounded-full shadow-lg" src={`${log.driver.avatar}`} alt="" />:<FaUserCircle className='md:text-gray-400 dark:text-white' size={20} />}
+                    {log.driver.avatar?<img className="md:w-[20px] h-[20px] rounded-full shadow-lg" src={`${log.driver.avatar}`} alt="" />:<InitialsAvatar name={log.driver.name} size={20} className="md:text-gray-400 dark:text-white" />}
                     {log.driver.name}
                     </div>
                    

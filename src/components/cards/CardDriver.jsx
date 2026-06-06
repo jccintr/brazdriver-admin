@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { FaUserCircle } from "react-icons/fa";
+import  { useState } from 'react';
 import { Button } from "flowbite-react";
 import { useNavigate } from 'react-router-dom';
 import { FaCrown } from "react-icons/fa";
@@ -8,6 +7,7 @@ import { FaEye, FaRegEdit } from "react-icons/fa";
 import { FaComment } from "react-icons/fa";
 import ModalSendPushMessage from '../modals/ModalSendPushMessage';
 import DriverStatus from '../DriverStatus';
+import InitialsAvatar from '../InitialsAvatar';
 
 const CardDriver = ({ driver, onView, toggleDriverStatus }) => {
   const [openPushModal, setOpenPushModal] = useState(false);
@@ -29,7 +29,11 @@ const CardDriver = ({ driver, onView, toggleDriverStatus }) => {
             alt=""
           />
         ) : (
-          <FaUserCircle className="text-gray-400 dark:text-white mb-3" size={60} />
+          <InitialsAvatar 
+            name={driver.name} 
+            size={60} 
+            className="mb-3 shadow-lg ring-2 ring-gray-200 dark:ring-gray-600"
+          />
         )}
 
         <div className="flex flex-col items-center gap-1">

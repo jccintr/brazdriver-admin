@@ -1,4 +1,4 @@
-import React from 'react';
+import InitialsAvatar from "../InitialsAvatar";
 import { FaUserCircle } from "react-icons/fa";
 import { FaEye,FaRegEdit  } from "react-icons/fa";
 import { Table,Rating, RatingStar,Button } from 'flowbite-react';
@@ -21,7 +21,7 @@ const TablePassengers = ({passengers,onView}) => {
                  <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800' key={passenger._id}>
                     <Table.Cell>
                         <div className='flex flex-row gap-2'>
-                            {passenger.avatar?<img className="md:w-[20px] h-[20px] rounded-full shadow-lg" src={`${passenger.avatar}`} alt="" />:<FaUserCircle className='md:text-gray-400 dark:text-white' size={20} />}
+                            {passenger.avatar?<img className="md:w-[20px] h-[20px] rounded-full shadow-lg" src={`${passenger.avatar}`} alt="" />:<InitialsAvatar name={passenger.name} size={20} className="md:text-gray-400 dark:text-white" />}
                             {passenger.name}
                         </div>
                     </Table.Cell>
