@@ -1,7 +1,8 @@
-import React, { useEffect,useState,useContext } from 'react';
+import { useEffect,useState,useContext } from 'react';
 import DashCorridasCanceladas from "../components/dashboard/DashCorridasCanceladas"
 import DashCorridasConcluidas from "../components/dashboard/DashCorridasConcluidas"
 import DashCorridasSolicitadas from "../components/dashboard/DashCorridasSolicitadas"
+import DashCorridasEmAndamento from "../components/dashboard/DashCorridasEmAndamento"
 import DashDrivers from "../components/dashboard/DashDrivers"
 import DashDriversOnline from "../components/dashboard/DashDriversOnline"
 import DashFaturamentoDia from "../components/dashboard/DashFaturamentoDia"
@@ -43,6 +44,7 @@ const Dashboard = () => {
            <DashPassageiros value={dashboard.registeredPassengers}/>
            <DashDrivers value={dashboard.registeredDrivers}/>
            <DashDriversOnline value={dashboard.driversOnline}/>
+           <DashCorridasEmAndamento value={dashboard.inProgressRides}/>
            <DashCorridasConcluidas value={dashboard.completedRides}/>
            <DashCorridasCanceladas value={dashboard.cancelledRides}/>
            <DashCorridasSolicitadas value={dashboard.solicitedRides}/>
