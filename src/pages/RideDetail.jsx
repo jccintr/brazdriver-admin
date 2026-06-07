@@ -9,6 +9,27 @@ import { Rating } from "flowbite-react";
 import { PiMapPinAreaFill } from "react-icons/pi";
 import util from '../util.js';
 import MessageBubble from '../components/MessageBubble';
+// imports do mapa
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from "leaflet";
+
+const position = [-22.47405379939683, -45.61427286357874];
+const lightMap = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+const startIcon = new L.Icon({
+  iconUrl: "start-marker.png", // caminho da imagem
+  iconSize: [30, 36],               // tamanho
+  iconAnchor: [20, 36],             // ponto onde "segura" no mapa
+  popupAnchor: [0, -36],            // onde o popup abre
+});
+
+const finishIcon = new L.Icon({
+  iconUrl: "finish-marker.png", // caminho da imagem
+  iconSize: [30, 36],               // tamanho
+  iconAnchor: [20, 36],             // ponto onde "segura" no mapa
+  popupAnchor: [0, -36],            // onde o popup abre
+});
 
 
 const formataData = (d)=> {
@@ -56,6 +77,23 @@ return (
     <h1 className='text-center text-3xl my-7 font-semibold dark:text-gray-100'>Detalhes da Corrida</h1>
     {ride.status===-2&&<h2 className='text-center mb-7 text-xl text-red-600'>CANCELADA PELO MOTORISTA</h2>}
     {ride.status===-1&&<h2 className='text-center mb-7 text-xl text-red-600'>CANCELADA PELO PASSAGEIRO</h2>}
+    
+       <div className="max-w-screen-xl mx-auto h-[400px] rounded-xl overflow-hidden">
+          <MapContainer className='w-full h-[400px] md:h-full' center={position} zoom={16} scrollWheelZoom={false}>
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url={lightMap}
+              />
+              <Marker position={[ride.origem.latitude, ride.origem.longitude]} icon={startIcon}>
+                  <Popup>{ride.origem.address}</Popup>
+              </Marker>
+              <Marker position={[ride.destino.latitude, ride.destino.longitude]} icon={finishIcon}>
+                  <Popup>{ride.destino.address}</Popup>
+              </Marker>
+          </MapContainer>
+       </div>
+   
+    <div className='h-5'/>
     <Card  className="max-w-screen-xl mx-auto">
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Data</h5>
       <p className="font-normal text-gray-700 dark:text-gray-400">{formataData(ride?.data)}</p>
