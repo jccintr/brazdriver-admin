@@ -2,7 +2,7 @@ import {  Label, TextInput,Alert, Spinner } from 'flowbite-react';
 import  {useState,useContext} from 'react';
 import DataContext from '../context/DataContext';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/logo-braz-taxi.png';
+import logo from '../assets/novo-logo-braz-taxi.png';
 import Api from '../api/Api';
 
 

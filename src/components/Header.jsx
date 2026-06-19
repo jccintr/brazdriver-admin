@@ -1,37 +1,38 @@
 import  {useContext} from 'react';
 import { Navbar, Button } from 'flowbite-react';
-import { useLocation } from 'react-router-dom';
-import { FaMoon, FaSun } from "react-icons/fa";
+//import { useLocation } from 'react-router-dom';
+//import { FaMoon, FaSun } from "react-icons/fa";
 import DataContext from '../context/DataContext';
 import useTheme from '../context/ThemeContext';
-//import logo from '../assets/logo-letter-460x60.png';
 import logo from '../assets/braz-taxi-letter-280x70.png';
 import logo2 from '../assets/braz-taxi-letter-280x70-font-black.png';
 
 
 const Header = () => {
-    const {themeMode,lightTheme,darkTheme} = useTheme();
+   // const {themeMode,lightTheme,darkTheme} = useTheme();
+     const {themeMode} = useTheme();
     const {loggedUser,setLoggedUser} = useContext(DataContext);
-    const path = useLocation().pathname;
+    //const path = useLocation().pathname;
 
     
-
+/*
    const onChangeColorMode = () => {
-           if(themeMode === 'dark'){
-               lightTheme();
-           } else {
-             darkTheme();
-           }
-    }
+        if(themeMode === 'dark'){
+            lightTheme();
+        } else {
+          darkTheme();
+        }
+}
+        */
 
     const onLogout = async () => {
-
       setLoggedUser(null);
-     // navigate('/login');
-    
     }
 
-  return (
+    if (!loggedUser) return null;
+ 
+
+ return (
     <Navbar className='border-b-2'>
         <div className='flex flex-row gap-2 items-center'>
            <img src={themeMode==='dark'?logo:logo2} alt='logo' className='w-36' />
@@ -42,15 +43,12 @@ const Header = () => {
             <Button className='justify-center items-center w-12 h-10' color='gray' pill onClick={()=>onChangeColorMode()}>
               {themeMode==='dark'?<FaSun/>:<FaMoon />}
             </Button>
-            */}
-            {loggedUser&&<Button gradientDuoTone='purpleToBlue' outline onClick={()=>onLogout()}>
-                 Sair
-               </Button>}
-           
+           */}
+            {loggedUser&&<Button gradientDuoTone='purpleToBlue' outline onClick={()=>onLogout()}>Sair</Button>}
         </div>
        
     </Navbar>
-  )
+  ) 
 }
 
 export default Header

@@ -3,7 +3,7 @@ import Api from '../api/Api';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from "leaflet";
-import useTheme from '../context/ThemeContext';
+//import useTheme from '../context/ThemeContext';
 import { Button } from 'flowbite-react';
 import { BiRefresh } from "react-icons/bi";
 
@@ -17,11 +17,11 @@ const customIcon = new L.Icon({
 });
 
 //const darkMap = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
-const darkMap = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png';
+//const darkMap = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png';
 const lightMap = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 const Mapa = () => {
-  const {themeMode} = useTheme();
+ // const {themeMode} = useTheme();
   const [drivers,setDrivers] = useState([]);
    const [isLoading,setIsLoading] = useState(false);
 
