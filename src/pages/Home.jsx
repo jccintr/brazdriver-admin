@@ -20,7 +20,7 @@ import DriversNotifications from './DriversNotifications';
 
 const Home = () => {
   const location = useLocation();
-  const [tab, setTab] = useState('');
+  const [tab, setTab] = useState('dashboard');
 
 
   useEffect(() => {

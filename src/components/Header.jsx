@@ -27,6 +27,7 @@ const Header = () => {
 
     const onLogout = async () => {
       setLoggedUser(null);
+      localStorage.removeItem('loggedUser'); // Garantia extra
     }
 
     if (!loggedUser) return null;

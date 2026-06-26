@@ -15,7 +15,7 @@ import { sideBarCustomTheme } from '../theme/sideBarTheme';
 
 const SideBar = () => {
     const location = useLocation();
-    const [tab,setTab] = useState('');
+    const [tab,setTab] = useState('dashboard');
     //const {setLoggedUser,loggedUser} = useContext(DataContext);
 
     useEffect(()=>{
