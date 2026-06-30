@@ -1,6 +1,6 @@
 import { useState,useContext, useEffect} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Card , Button, Spinner,Table} from 'flowbite-react';
+import { Card , Button, Spinner} from 'flowbite-react';
 import DataContext from '../context/DataContext';
 import Api from '../api/Api';
 import { HiOutlineArrowLeft } from "react-icons/hi";
@@ -44,7 +44,7 @@ const RideDetail = () => {
   const params = useLocation();
   const {rideId} = params.state;
   const [ride,setRide] = useState(null);
-  const [publishError, setPublishError] = useState(null);
+  //const [publishError, setPublishError] = useState(null);
   const navigate = useNavigate();
   const [isLoading,setIsLoading] = useState(false);
   const [isLoadingData,setIsLoadingData] = useState(false);

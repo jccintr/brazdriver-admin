@@ -1,4 +1,4 @@
-export default {
+const util = {
 
     formataData: (d)=> {
 
@@ -37,7 +37,7 @@ export default {
             return minutos.toFixed(0) + ' min';
         }
     
-        let {hours,minutes} = toHoursAndMinutes(minutos);
+        let {hours,minutes} = util.toHoursAndMinutes(minutos);
     
         minutes = Math.ceil(minutes);
     
@@ -49,3 +49,5 @@ export default {
     },
 
 }
+
+export default util;
