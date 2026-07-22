@@ -48,7 +48,7 @@ const TableRides = ({rides,onDelete,onView,totalPages,onChangePage,currentPage})
                        
                       </Table.Cell>
                       
-                      <Table.Cell  className='hidden md:table-cell'>{ride.valor.toFixed(2)}</Table.Cell>
+                      <Table.Cell  className='hidden md:table-cell'>{ride.valor.toFixed(2).replace('.',',')}</Table.Cell>
                       <Table.Cell>
                         <div className='flex flex-row gap-2'>
                            <Button size='xs' pill color="blue" onClick={()=>onView(ride._id)}><FaEye/></Button>
