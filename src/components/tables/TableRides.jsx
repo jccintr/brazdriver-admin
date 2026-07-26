@@ -1,15 +1,17 @@
-import { FaUserCircle, FaRegTrashAlt, FaEye } from "react-icons/fa";
+import { FaRegTrashAlt, FaEye } from "react-icons/fa";
 import { Table,Button,Pagination } from 'flowbite-react';
 import { paginationCustomTheme } from '../../theme/paginationTheme';
 import InitialsAvatar from "../InitialsAvatar";
+import util from '../../util.js';
 
+/*
 const formataData = (d)=> {
 
     const data = new Date(d);
     return data.toLocaleDateString('pt-BR') + ' ' + data.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit"});
 
 }
-
+*/
 
 const TableRides = ({rides,onDelete,onView,totalPages,onChangePage,currentPage}) => {
   
@@ -30,7 +32,7 @@ const TableRides = ({rides,onDelete,onView,totalPages,onChangePage,currentPage})
                 {rides.map((ride) => (
                   
                   <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800' key={ride._id}>
-                      <Table.Cell>{formataData(ride.data)}</Table.Cell>
+                      <Table.Cell>{util.formataData(ride.data)}</Table.Cell>
                       <Table.Cell>
     
                             <div className='flex flex-row gap-2'>

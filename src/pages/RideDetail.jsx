@@ -31,13 +31,14 @@ const finishIcon = new L.Icon({
   popupAnchor: [0, -36],            // onde o popup abre
 });
 
-
+/*
 const formataData = (d)=> {
 
     const data = new Date(d);
     return data.toLocaleDateString('pt-BR') + ' ' + data.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit"});
 
 }
+    */
 
 const RideDetail = () => {
   const {loggedUser} = useContext(DataContext);
@@ -96,7 +97,7 @@ return (
     <div className='h-5'/>
     <Card  className="max-w-screen-xl mx-auto">
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Data</h5>
-      <p className="font-normal text-gray-700 dark:text-gray-400">{formataData(ride?.data)}</p>
+      <p className="font-normal text-gray-700 dark:text-gray-400">{util.formataData(ride?.data)}</p>
     </Card>
     <div className='h-5'/>
     <Card  className="max-w-screen-xl mx-auto">

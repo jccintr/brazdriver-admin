@@ -2,10 +2,11 @@ import InitialsAvatar from "../InitialsAvatar";
 import { FaRegTrashAlt  } from "react-icons/fa";
 import { Table,Button,Pagination } from 'flowbite-react';
 import { paginationCustomTheme } from '../../theme/paginationTheme';
+import util from "../../util.js";
 
 
 
-
+/*
 
 const formataData = (d)=> {
 
@@ -13,7 +14,7 @@ const formataData = (d)=> {
     return data.toLocaleDateString('pt-BR') + ' ' + data.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit"});
 
 }
-
+*/
 
 
 const TableDriversLog = ({logs,onDelete,totalPages,onChangePage,currentPage}) => {
@@ -34,7 +35,7 @@ const TableDriversLog = ({logs,onDelete,totalPages,onChangePage,currentPage}) =>
             {logs.map((log) => (
               
               <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800' key={log._id}>
-                  <Table.Cell>{formataData(log.data)}</Table.Cell>
+                  <Table.Cell>{util.formataHoraComSegundos(log.data)}</Table.Cell>
                   <Table.Cell>
 
                     <div className='flex flex-row gap-2'>
