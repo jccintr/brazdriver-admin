@@ -6,12 +6,20 @@ const util = {
         return data.toLocaleDateString() + ' ' + data.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit"});
 
     },
-    formataHora: (d)=> {
+    formataHora: (d) => {
 
         const data = new Date(d);
         return data.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit"});
 
     },
+
+    formataHoraComSegundos: (d) => {
+
+        const data = new Date(d);
+        return data.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit",  second: "2-digit"});
+
+    },
+
 
     toHoursAndMinutes: (totalMinutes) => {
 

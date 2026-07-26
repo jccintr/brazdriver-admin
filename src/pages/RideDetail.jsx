@@ -201,7 +201,7 @@ return (
         <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Eventos</h5>
         {ride.events.map((evento,index)=>(
             <p key={index} className="font-normal text-gray-700 dark:text-gray-400">
-                <span className='font-semibold mr-2'>{util.formataHora(evento.data)}</span>{evento.descricao}</p>
+                <span className='font-semibold mr-2'>{util.formataHoraComSegundos(evento.data)}</span>{evento.descricao}</p>
         ))}
     </Card>
 
