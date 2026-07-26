@@ -39,9 +39,9 @@ const TablePassengersLog = ({logs,onDelete,totalPages,onChangePage,currentPage})
                   <Table.Cell>{util.formataDataComSegundos(log.data)}</Table.Cell>
                   <Table.Cell>
 
-                    <div className='flex flex-row gap-2'>
-                    {log.passenger.avatar?<img className="md:w-[20px] h-[20px] rounded-full shadow-lg" src={`${log.passenger.avatar}`} alt="" />:<InitialsAvatar name={log.passenger.name} size={20} className="md:text-gray-400 dark:text-white" />}
-                    {log.passenger.name}
+                    <div className='flex flex-row gap-2 items-center'>
+                      {log.passenger.avatar?<img className="md:w-[25px] h-[25px] rounded-full shadow-lg" src={`${log.passenger.avatar}`} alt="" />:<InitialsAvatar name={log.passenger.name} size={25} className="md:text-gray-400 dark:text-white" />}
+                      {log.passenger.name}
                     </div>
                    
                   </Table.Cell>

@@ -38,9 +38,9 @@ const TableDriversLog = ({logs,onDelete,totalPages,onChangePage,currentPage}) =>
                   <Table.Cell>{util.formataDataComSegundos(log.data)}</Table.Cell>
                   <Table.Cell>
 
-                    <div className='flex flex-row gap-2'>
-                    {log.driver.avatar?<img className="md:w-[20px] h-[20px] rounded-full shadow-lg" src={`${log.driver.avatar}`} alt="" />:<InitialsAvatar name={log.driver.name} size={20} className="md:text-gray-400 dark:text-white" />}
-                    {log.driver.name}
+                    <div className='flex flex-row gap-2 items-center'>
+                      {log.driver.avatar?<img className="md:w-[25px] h-[25px] rounded-full shadow-lg" src={`${log.driver.avatar}`} alt="" />:<InitialsAvatar name={log.driver.name} size={25} className="md:text-gray-400 dark:text-white" />}
+                      {log.driver.name}
                     </div>
                    
                   </Table.Cell>
