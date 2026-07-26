@@ -35,7 +35,7 @@ const TableDriversLog = ({logs,onDelete,totalPages,onChangePage,currentPage}) =>
             {logs.map((log) => (
               
               <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800' key={log._id}>
-                  <Table.Cell>{util.formataHoraComSegundos(log.data)}</Table.Cell>
+                  <Table.Cell>{util.formataDataComSegundos(log.data)}</Table.Cell>
                   <Table.Cell>
 
                     <div className='flex flex-row gap-2'>
