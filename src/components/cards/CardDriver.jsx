@@ -60,7 +60,7 @@ const CardDriver = ({ driver, onView, toggleDriverStatus }) => {
           <Button size="xs" pill color="success" onClick={() =>navigate('/edit-driver', { state: { driverId: driver._id } })} title="Editar motorista">
             <FaRegEdit />
           </Button>
-          <Button size="xs" pill color="warning" onClick={() => setOpenRidesModal(true)} title="Corridas do motorista">
+          <Button className='hidden md:block' size="xs" pill color="warning" onClick={() => setOpenRidesModal(true)} title="Corridas do motorista">
             <FaRoad />
           </Button>
           {driver.pushToken && (

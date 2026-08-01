@@ -33,7 +33,7 @@ const CardPassenger = ({passenger,onView}) => {
       <div className='flex flex-row gap-2'>
           <Button size="xs" pill className='mt-4' color="blue" onClick={()=>onView(passenger)} title="Detalhes do passageiro"><FaEye/></Button>
           <Button size="xs" pill className='mt-4' color="success" onClick={()=>navigate('/edit-passenger',{state:{passengerId:passenger._id}})} title="Editar passageiro"><FaRegEdit/></Button>
-          <Button size="xs" pill className='mt-4' color="warning" onClick={() => setOpenRidesModal(true)} title="Corridas do passageiro">
+          <Button size="xs" pill className='hidden md:block mt-4' color="warning" onClick={() => setOpenRidesModal(true)} title="Corridas do passageiro">
             <FaRoad />
           </Button>
       </div>
