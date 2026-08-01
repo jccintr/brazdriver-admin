@@ -5,10 +5,16 @@ import { FaCrown } from "react-icons/fa";
 import { Rating } from "flowbite-react";
 import { FaEye,FaRegEdit   } from "react-icons/fa";
 import { FaRoad } from "react-icons/fa";
+import ModalPassengerRides from '../modals/ModalPassengerRides';
+import { useState } from 'react';
+
 
 
 const CardPassenger = ({passenger,onView}) => {
+  const [openRidesModal, setOpenRidesModal] = useState(false);
   const navigate = useNavigate()
+
+
   return (
     <div className="w-[330px] md:w-[250px] lg:w-[300px] py-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" >
     
@@ -27,12 +33,17 @@ const CardPassenger = ({passenger,onView}) => {
       <div className='flex flex-row gap-2'>
           <Button size="xs" pill className='mt-4' color="blue" onClick={()=>onView(passenger)} title="Detalhes do passageiro"><FaEye/></Button>
           <Button size="xs" pill className='mt-4' color="success" onClick={()=>navigate('/edit-passenger',{state:{passengerId:passenger._id}})} title="Editar passageiro"><FaRegEdit/></Button>
-          <Button size="xs" pill className='mt-4' color="warning" onClick={()=>{}} title="Corridas do passageiro">
+          <Button size="xs" pill className='mt-4' color="warning" onClick={() => setOpenRidesModal(true)} title="Corridas do passageiro">
             <FaRoad />
           </Button>
       </div>
      
     </div>
+    <ModalPassengerRides
+        openModal={openRidesModal}
+        setOpenModal={setOpenRidesModal}
+        passenger={passenger}
+      />
   </div>
   )
 }

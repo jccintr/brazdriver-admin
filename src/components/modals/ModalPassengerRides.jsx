@@ -3,20 +3,20 @@ import { Modal, Spinner } from 'flowbite-react';
 import DataContext from '../../context/DataContext';
 import Api from '../../api/Api';
 import InitialsAvatar from '../InitialsAvatar';
-import TableDriverRides from '../tables/TableDriverRides';
+import TablePassengerRides from '../tables/TablePassengerRides';
 
 
-const ModalDriverRides = ({ openModal, setOpenModal, driver }) => {
+const ModalPassengerRides = ({ openModal, setOpenModal, passenger }) => {
   const { loggedUser } = useContext(DataContext);
   const [rides, setRides] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (openModal && driver?._id && loggedUser?.token) {
+    if (openModal && passenger?._id && loggedUser?.token) {
       fetchRides();
     }
-  }, [openModal, driver?._id, loggedUser?.token]);
+  }, [openModal, passenger?._id, loggedUser?.token]);
 
   const fetchRides = async () => {
     setLoading(true);
@@ -24,7 +24,7 @@ const ModalDriverRides = ({ openModal, setOpenModal, driver }) => {
     setRides([]);
 
     try {
-      const response = await Api.getDriverRides(loggedUser.token, driver._id);
+      const response = await Api.getPassengerRides(loggedUser.token, passenger._id);
       const json = await response.json();
 
       if (!response.ok) {
@@ -47,24 +47,24 @@ const ModalDriverRides = ({ openModal, setOpenModal, driver }) => {
     setError(null);
   };
 
-  if (!driver) return null;
+  if (!passenger) return null;
 
   return (
     <Modal show={openModal} onClose={handleClose} size="4xl">
       <Modal.Header>
         <div className="flex items-center gap-3">
-          {driver.avatar ? (
+          {passenger.avatar ? (
             <img
               className="w-10 h-10 rounded-full object-cover shadow"
-              src={driver.avatar}
-              alt={driver.name}
+              src={passenger.avatar}
+              alt={passenger.name}
             />
           ) : (
-            <InitialsAvatar name={driver.name} size={40} />
+            <InitialsAvatar name={passenger.name} size={40} />
           )}
           <div className="flex flex-col">
             <span className="text-base font-semibold text-gray-900 dark:text-white">
-              {driver.name}
+              {passenger.name}
             </span>
             <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
               Histórico de Corridas {rides.length>0 && `(${rides.length} ocorrências)`}
@@ -82,13 +82,13 @@ const ModalDriverRides = ({ openModal, setOpenModal, driver }) => {
           <p className="text-red-500 text-center py-8">{error}</p>
         ) : rides.length === 0 ? (
           <p className="text-center py-12 text-gray-500 dark:text-gray-400">
-            Nenhuma corrida encontrada para este motorista.
+            Nenhuma corrida encontrada para este passageiro.
           </p>
         ) : (
            
            <div className="flex justify-center w-full px-4 pb-4">
                 <div className="w-full max-w-4xl">
-                    <TableDriverRides rides={rides} />
+                    <TablePassengerRides rides={rides} />
                 </div>
            </div>
            
@@ -101,4 +101,4 @@ const ModalDriverRides = ({ openModal, setOpenModal, driver }) => {
   );
 };
 
-export default ModalDriverRides;
+export default ModalPassengerRides;
