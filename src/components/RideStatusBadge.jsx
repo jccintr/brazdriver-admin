@@ -5,23 +5,23 @@ const RideStatusBadge = ({ status }) => {
 
   switch (status) {
     case 5:
-      containerClass = 'bg-green-100';
-      textClass = 'text-green-800';
+      containerClass = 'bg-green-100 dark:bg-green-600';
+      textClass = 'text-green-800 dark:text-green-300';
       textLabel = 'Finalizada';
       break;
     case -2:
-      containerClass = 'bg-red-100';
-      textClass = 'text-red-800';
+      containerClass = 'bg-red-100 dark:bg-red-600';
+      textClass = 'text-red-800 dark:text-red-300';
       textLabel = 'Cancelada';
       break;
     case -1:
-      containerClass = 'bg-yellow-100';
-      textClass = 'text-yellow-900';
+      containerClass = 'bg-yellow-100 dark:bg-yellow-600';
+      textClass = 'text-yellow-900 dark:text-yellow-200';
       textLabel = 'Não Atendida';
       break;
     default:
-      containerClass = 'bg-yellow-100';
-      textClass = 'text-yellow-900';
+      containerClass = 'bg-gray-100 dark:bg-gray-700';
+      textClass = 'text-gray-800 dark:text-gray-300';
       textLabel = 'Desconhecido';
   }
 
