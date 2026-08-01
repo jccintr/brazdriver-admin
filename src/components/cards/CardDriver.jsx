@@ -1,7 +1,7 @@
 import  { useState } from 'react';
 import { Button } from "flowbite-react";
 import { useNavigate } from 'react-router-dom';
-import { FaCrown } from "react-icons/fa";
+import { FaRoad } from "react-icons/fa";
 import { Rating } from "flowbite-react";
 import { FaEye, FaRegEdit } from "react-icons/fa";
 import { FaComment } from "react-icons/fa";
@@ -52,31 +52,17 @@ const CardDriver = ({ driver, onView, toggleDriverStatus }) => {
         </div>
 
         <div className="flex flex-row gap-2 mt-6">
-          <Button
-            size="xs"
-            pill
-            color="blue"
-            onClick={() => onView(driver)}
-          >
+          <Button size="xs" pill color="blue" onClick={() => onView(driver)} title="Detalhes do motorista">
             <FaEye />
           </Button>
-          <Button
-            size="xs"
-            pill
-            color="success"
-            onClick={() =>
-              navigate('/edit-driver', { state: { driverId: driver._id } })
-            }
-          >
+          <Button size="xs" pill color="success" onClick={() =>navigate('/edit-driver', { state: { driverId: driver._id } })} title="Editar motorista">
             <FaRegEdit />
           </Button>
+          <Button size="xs" pill color="warning" onClick={()=>{}} title="Corridas do motorista">
+            <FaRoad />
+          </Button>
           {driver.pushToken && (
-            <Button
-              size="xs"
-              pill
-              color="yellow"
-              onClick={() => setOpenPushModal(true)}
-            >
+            <Button size="xs" pill color="yellow" onClick={() => setOpenPushModal(true)} title="Enviar mensagem push">
               <FaComment />
             </Button>
           )}

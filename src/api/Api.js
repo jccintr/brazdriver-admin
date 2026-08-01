@@ -58,7 +58,7 @@ export default {
            
         });
         return response;
-    },´
+    },
 
     getPassenger: async (token,id) => {
         const response = await fetch(`${BASE_API}/admin/passengers/${id}`, {
