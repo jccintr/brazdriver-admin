@@ -35,6 +35,7 @@ export default {
         });
         return response;
     },
+
     getDrivers: async (token) => {
         const response = await fetch(`${BASE_API}/admin/drivers`, {
             method: 'GET', 
@@ -59,6 +60,20 @@ export default {
         });
         return response;
     },
+
+     getDriver: async (token,id) => {
+        const response = await fetch(`${BASE_API}/admin/drivers/${id}`, {
+            method: 'GET', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    },
+
 
     getPassenger: async (token,id) => {
         const response = await fetch(`${BASE_API}/admin/passengers/${id}`, {
