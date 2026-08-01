@@ -6,11 +6,13 @@ import { Rating } from "flowbite-react";
 import { FaEye, FaRegEdit } from "react-icons/fa";
 import { FaComment } from "react-icons/fa";
 import ModalSendPushMessage from '../modals/ModalSendPushMessage';
+import ModalDriverRides from '../modals/ModalDriverRides';
 import DriverStatus from '../DriverStatus';
 import InitialsAvatar from '../InitialsAvatar';
 
 const CardDriver = ({ driver, onView, toggleDriverStatus }) => {
   const [openPushModal, setOpenPushModal] = useState(false);
+  const [openRidesModal, setOpenRidesModal] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -58,7 +60,7 @@ const CardDriver = ({ driver, onView, toggleDriverStatus }) => {
           <Button size="xs" pill color="success" onClick={() =>navigate('/edit-driver', { state: { driverId: driver._id } })} title="Editar motorista">
             <FaRegEdit />
           </Button>
-          <Button size="xs" pill color="warning" onClick={()=>{}} title="Corridas do motorista">
+          <Button size="xs" pill color="warning" onClick={() => setOpenRidesModal(true)} title="Corridas do motorista">
             <FaRoad />
           </Button>
           {driver.pushToken && (
@@ -76,6 +78,11 @@ const CardDriver = ({ driver, onView, toggleDriverStatus }) => {
           driver={driver}
         />
       )}
+      <ModalDriverRides
+        openModal={openRidesModal}
+        setOpenModal={setOpenRidesModal}
+        driver={driver}
+      />
     </div>
   );
 };

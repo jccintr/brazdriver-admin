@@ -12,7 +12,7 @@ const RideStatusBadge = ({ status }) => {
     case -2:
       containerClass = 'bg-red-100';
       textClass = 'text-red-800';
-      textLabel = 'Cancelada pelo Motorista';
+      textLabel = 'Cancelada';
       break;
     case -1:
       containerClass = 'bg-yellow-100';

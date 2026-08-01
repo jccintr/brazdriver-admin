@@ -13,7 +13,7 @@ const TableDriverRides = ({rides}) => {
            <Table.HeadCell className='hidden md:table-cell'>Status</Table.HeadCell>
            <Table.HeadCell className='hidden md:table-cell'>Passageiro</Table.HeadCell>
            <Table.HeadCell className='hidden md:table-cell'>Valor</Table.HeadCell>
-           <Table.HeadCell></Table.HeadCell>
+           
         </Table.Head>
         <Table.Body className='divide-y'>
             {rides.map((ride) => (
