@@ -47,8 +47,8 @@ export default {
         });
         return response;
     },
-    getDriver: async (token,id) => {
-        const response = await fetch(`${BASE_API}/admin/drivers/${id}`, {
+    getDriverRides: async (token,id) => {
+        const response = await fetch(`${BASE_API}/admin/drivers/${id}/rides`, {
             method: 'GET', 
             headers: {
                 Accept: 'application/json',
@@ -58,7 +58,8 @@ export default {
            
         });
         return response;
-    },
+    },´
+
     getPassenger: async (token,id) => {
         const response = await fetch(`${BASE_API}/admin/passengers/${id}`, {
             method: 'GET', 
@@ -70,6 +71,19 @@ export default {
            
         });
         return response;
+    },
+
+    getPassengerRides: async (token,id) => {
+        const response = await fetch(`${BASE_API}/admin/passengers/${id}/rides`, {
+            method: 'GET', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;    
     },
     addDriver: async (token,fd) => {
         const response = await fetch(`${BASE_API}/admin/drivers/register`, {
