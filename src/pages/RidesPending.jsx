@@ -65,27 +65,27 @@ const onDelete = async (ride) => {
     <div className='pt-4 w-full px-4  mx-auto dark:bg-slate-800'>
       <div className='flex flex-col items-center'>
         
-          {rides.length === 0 ? (
-                <div className="text-center text-gray-500 dark:text-gray-400 mt-10">
-                    Nenhuma corrida pendente encontrada
-                </div>
-            ) : !isLoading ? (
-                <TableRides
-                    onDelete={null}
-                    totalPages={totalPages}
-                    currentPage={currentPage}
-                    onChangePage={onChangePage}
-                    rides={rides}
-                    onView={onView}
-                />
+          {isLoading ? (
+            <Spinner
+                className="flex-1 w-full mt-10"
+                color="info"
+                aria-label="Info spinner example"
+                size="xl"
+            />
+            ) : rides.length === 0 ? (
+            <div className="text-center text-gray-500 dark:text-gray-400 mt-10">
+                Nenhuma corrida pendente encontrada
+            </div>
             ) : (
-                <Spinner
-                    className="flex-1 w-full mt-10"
-                    color="info"
-                    aria-label="Info spinner example"
-                    size="xl"
-                />
-          )}
+            <TableRides
+                onDelete={null}
+                totalPages={totalPages}
+                currentPage={currentPage}
+                onChangePage={onChangePage}
+                rides={rides}
+                onView={onView}
+            />
+            )}
         
       </div>
      
