@@ -220,7 +220,7 @@ export default {
         });
         return response;
     },
-    getRides: async (token,page) => {
+    getRides: async (token,page) => { // concluidas
         const response = await fetch(`${BASE_API}/admin/rides?page=${page}`, {
             method: 'GET', 
             headers: {
@@ -234,6 +234,42 @@ export default {
     },
     getRideDetail: async (token,id) => {
         const response = await fetch(`${BASE_API}/admin/rides/${id}`, {
+            method: 'GET', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    },
+    getPendingRides: async (token,page) => {
+        const response = await fetch(`${BASE_API}/admin/rides/pending?page=${page}`, {
+            method: 'GET', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    },
+     getAcceptedRides: async (token,page) => {
+        const response = await fetch(`${BASE_API}/admin/rides/accepted?page=${page}`, {
+            method: 'GET', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    },
+    getInProgressRides: async (token,page) => {
+        const response = await fetch(`${BASE_API}/admin/rides/in-progress?page=${page}`, {
             method: 'GET', 
             headers: {
                 Accept: 'application/json',

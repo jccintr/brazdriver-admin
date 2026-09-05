@@ -9,6 +9,9 @@ import Rides from './Rides';
 import Bairros from './Bairros';
 import Mensagens from './Mensagens';
 import PassengersLog from './PassengersLog';
+import RidesPending from './RidesPending';
+import RidesAccepted from './RidesAccepted';
+import RidesInProgress from './RidesInProgress';
 import RidesCancelled from './RidesCancelled';
 import RidesSolicited from './RidesSolicited';
 import DriversLog from './DriversLog';
@@ -45,6 +48,9 @@ const Home = () => {
        {tab === 'driversLogs' && <DriversLog />}
        {tab === 'drivers' && <Drivers />}
        {tab === 'rides' && <Rides />}
+       {tab === 'rides-pending' && <RidesPending/>}
+       {tab === 'rides-accepted' && <RidesAccepted/>}
+       {tab === 'rides-in-progress' && <RidesInProgress/>}
        {tab === 'rides-cancelled' && <RidesCancelled/>}
        {tab === 'rides-solicited' && <RidesSolicited/>}
        {tab === 'bairros' && <Bairros />}

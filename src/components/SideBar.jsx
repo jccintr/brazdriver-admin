@@ -63,9 +63,19 @@ const SideBar = () => {
                     <Sidebar.Item active={tab === 'drivers' || !tab} icon={FaCar} as='div'>Motoristas</Sidebar.Item>
               </Link>
               <Sidebar.Collapse icon={FaRoad} label="Corridas">
+                  <Link to='/?tab=rides-pending'>
+                        <Sidebar.Item active={tab === 'rides-pending' || !tab} as='div'>Pendentes</Sidebar.Item>
+                  </Link>
+                  <Link to='/?tab=rides-accepted'>
+                        <Sidebar.Item active={tab === 'rides-accepted' || !tab} as='div'>Aceitas</Sidebar.Item>
+                  </Link>
+                  <Link to='/?tab=rides-in-progress'>
+                        <Sidebar.Item active={tab === 'rides-in-progress' || !tab} as='div'>Em Andamento</Sidebar.Item>
+                  </Link>
                   <Link to='/?tab=rides'>
                         <Sidebar.Item active={tab === 'rides' || !tab} as='div'>Concluídas</Sidebar.Item>
                   </Link>
+                  
                   <Link to='/?tab=rides-cancelled'>
                         <Sidebar.Item active={tab === 'rides-cancelled' || !tab} as='div'>Canceladas</Sidebar.Item>
                   </Link>
@@ -73,9 +83,10 @@ const SideBar = () => {
                         <Sidebar.Item active={tab === 'rides-solicited' || !tab} as='div'>Não Atendidas</Sidebar.Item>
                   </Link>
               </Sidebar.Collapse>
+              {/*
               <Link to='/?tab=bairros'>
                     <Sidebar.Item active={tab === 'bairros' || !tab} icon={BiSolidDirections} as='div'>Bairros</Sidebar.Item>
-              </Link>
+              </Link>*/}
               <Link to='/?tab=mensagens'>
                     <Sidebar.Item active={tab === 'mensagens' || !tab} icon={FaEnvelope} as='div'>Mensagens</Sidebar.Item>
               </Link>
