@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 const RidesPending = () => {
   const [rides,setRides] = useState([]);
-  const [isLoading,setIsLoading] = useState(false);
+  const [isLoading,setIsLoading] = useState(true);
   const {loggedUser} = useContext(DataContext);
   const navigate = useNavigate();
   const [totalPages,setTotalPages] = useState(1);
@@ -22,7 +22,7 @@ const RidesPending = () => {
  }, []);
 
  const getPendingRides = async (page) => {
-  setIsLoading(true);            
+  //setIsLoading(true);            
   let response = await Api.getPendingRides(loggedUser.token,page);
   if(response.ok){
     let json = await response.json();

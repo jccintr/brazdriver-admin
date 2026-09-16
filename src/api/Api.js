@@ -455,6 +455,19 @@ export default {
         return response;
      },
 
+      getMapData: async (token) => {
+        const response = await fetch(`${BASE_API}/admin/map`, {
+            method: 'GET', 
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+           
+        });
+        return response;
+    },
+
 
   
 

@@ -1,4 +1,4 @@
-import  { useEffect,useState } from 'react';
+import  { useEffect,useState, useContext } from 'react';
 import Api from '../api/Api';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -6,6 +6,7 @@ import L from "leaflet";
 //import useTheme from '../context/ThemeContext';
 import { Button } from 'flowbite-react';
 import { BiRefresh } from "react-icons/bi";
+import DataContext from '../context/DataContext';
 
 const position = [-22.47405379939683, -45.61427286357874];
 
@@ -16,28 +17,48 @@ const customIcon = new L.Icon({
   popupAnchor: [0, -36],            // onde o popup abre
 });
 
+const rideIcon = L.icon({
+  iconUrl: 'ride-marker.png',
+  iconSize: [40, 52],
+  iconAnchor: [20, 52],
+  popupAnchor: [0, -46],
+});
+
+const acceptedIcon = L.icon({
+  iconUrl: 'ride-accepted.png',
+  iconSize: [40, 52],
+  iconAnchor: [20, 52],
+  popupAnchor: [0, -46],
+});
+
 //const darkMap = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
 //const darkMap = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png';
 const lightMap = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 const Mapa = () => {
  // const {themeMode} = useTheme();
-  const [drivers,setDrivers] = useState([]);
+   const [drivers,setDrivers] = useState([]);
+   const [pendingRides,setPendingRides] = useState([]);
+   const [acceptedRides,setAcceptedRides] = useState([]);
    const [isLoading,setIsLoading] = useState(false);
+    const {loggedUser} = useContext(DataContext);
 
     useEffect(()=>{
            
        
-        getDrivers();
+        getMapData();
         
     }, []);
 
-     const getDrivers = async () => {
+     const getMapData = async () => {
             setIsLoading(true);            
-            let response = await Api.getDriversOnline();
+            let response = await Api.getMapData(loggedUser.token);
             if(response.ok){
               let json = await response.json();
-               setDrivers(json);
+              console.log(json.drivers)
+               setDrivers(json.drivers);
+               setPendingRides(json.pendingRides);
+               setAcceptedRides(json.acceptedRides);
             }
             
            setIsLoading(false);
@@ -49,7 +70,7 @@ const Mapa = () => {
    <div className='w-full  mx-auto dark:bg-slate-800'>
        <div className="relative w-full mx-auto dark:bg-slate-800">
           <div className="absolute top-4 right-4 z-[1000]">
-              <Button color="green" pill size='xs' onClick={()=> getDrivers()} disabled={isLoading}>
+              <Button color="green" pill size='xs' onClick={()=> getMapData()} disabled={isLoading}>
                       <BiRefresh className={`h-6 w-6 ${isLoading ? 'animate-spin' : ''}`} />
               </Button>
           </div>
@@ -75,6 +96,33 @@ const Mapa = () => {
                         {driver.name}<br/>
                         {driver.veiculo.modelo+ ' '+ driver.veiculo.cor} 
                         {/*Placa: {driver.veiculo.placa}*/}
+                    </Popup>
+                </Marker>
+              ))}
+
+              {pendingRides.map((ride)=>(
+                <Marker 
+                    key={ride._id} 
+                    position={[ride.origem.latitude, ride.origem.longitude]} 
+                    icon={rideIcon}
+                >
+                    <Popup>
+                        Corrida Solicitada por 
+                        {' ' + ride.passenger.name}
+                    </Popup>
+                </Marker>
+              ))}
+
+              {acceptedRides.map((ride)=>(
+                <Marker 
+                    key={ride._id} 
+                    position={[ride.origem.latitude, ride.origem.longitude]} 
+                    icon={acceptedIcon}
+                >
+                    <Popup>
+                        Corrida Solicitada por 
+                        {' ' + ride.passenger.name}<br/>
+                        Aceita pelo motorista {' ' + ride.driver.name}
                     </Popup>
                 </Marker>
               ))}
